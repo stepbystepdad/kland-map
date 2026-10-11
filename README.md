@@ -4,24 +4,22 @@ The interactive map that runs on https://www.kevinsilvester.com/kland, published
 can load it from jsDelivr instead of carrying it inline (the inline copy was approximately 2.1 MB of
 the page's 2.35 MB of HTML, so the browser could not cache it between visits).
 
-kland-map.js is a verbatim extract of the script that was inline in the page's map code block. It is
-loaded with defer, so the page's own markup is parsed first and behaviour is unchanged.
-
-Content and artwork belong to Kevin Silvester. All rights reserved; this repository is a delivery
-mechanism, not a grant of any licence.
+`kland-map.js` is a small loader. The page loads it from
+`https://cdn.jsdelivr.net/gh/stepbystepdad/kland-map@v1/kland-map.js` (as it always has). The loader
+reads `version.json`, then requests the map bundle at `bundle.js@<version>` and the terrain at
+`k-land-terrain.svg@<version>`, pinning both to the same release.
 
 ## Releases and cache updates
 
-The K Land page loads this bundle through a small loader that pins an exact
-release, so visitors never need a hard refresh. jsDelivr caches URLs for a week
-(or a year for exact versions), so the URL must change whenever the bytes change.
+jsDelivr caches a URL for a week (a year for an exact version), so a URL has to change whenever its
+bytes change. The loader pins the exact version, so a release is:
 
-To publish an update:
-
-1. Bump `version.json` to the new tag, e.g. `{"version":"v1.0.5"}`.
+1. Bump `version.json` to the new tag, e.g. `{"version":"v1.1.1"}`.
 2. Commit and push to the default branch.
-3. Tag that commit (`git tag v1.0.5 && git push origin v1.0.5`).
+3. Tag that commit (`git tag v1.1.1 && git push origin v1.1.1`).
 
-The loader reads `version.json` from the default branch, then requests
-`kland-map.js@<version>` and `k-land-terrain.svg@<version>`. Because both URLs
-carry the new version, browsers fetch the new files on the next page view.
+Because `bundle.js` and `k-land-terrain.svg` are requested at the new version, browsers fetch the
+new files on the next page view - no hard refresh, and no change to the Squarespace page.
+
+Content and artwork belong to Kevin Silvester. All rights reserved; this repository is a delivery
+mechanism, not a grant of any licence.
