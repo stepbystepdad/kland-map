@@ -2,11 +2,12 @@
 (function () {
   'use strict';
   var REPO = 'https://cdn.jsdelivr.net/gh/stepbystepdad/kland-map@';
-  var FALLBACK = 'v1.1.0';
-  function load(version) {
+  var FALLBACK = 'v1.1.1';
+  function load(version, retry) {
     window.KLAND_MAP_VERSION = version;
     var s = document.createElement('script');
     s.async = false;
+    s.onerror = function () { if (!retry) load(FALLBACK, true); };
     s.src = REPO + version + '/bundle.js';
     document.head.appendChild(s);
   }
