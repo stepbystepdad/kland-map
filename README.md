@@ -9,3 +9,19 @@ loaded with defer, so the page's own markup is parsed first and behaviour is unc
 
 Content and artwork belong to Kevin Silvester. All rights reserved; this repository is a delivery
 mechanism, not a grant of any licence.
+
+## Releases and cache updates
+
+The K Land page loads this bundle through a small loader that pins an exact
+release, so visitors never need a hard refresh. jsDelivr caches URLs for a week
+(or a year for exact versions), so the URL must change whenever the bytes change.
+
+To publish an update:
+
+1. Bump `version.json` to the new tag, e.g. `{"version":"v1.0.5"}`.
+2. Commit and push to the default branch.
+3. Tag that commit (`git tag v1.0.5 && git push origin v1.0.5`).
+
+The loader reads `version.json` from the default branch, then requests
+`kland-map.js@<version>` and `k-land-terrain.svg@<version>`. Because both URLs
+carry the new version, browsers fetch the new files on the next page view.
