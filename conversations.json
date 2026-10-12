@@ -31,75 +31,84 @@
   },
   "scripts": {
     "Chris|K": [
-      [["K", "I've decided I'm done with men."], ["Chris", "You said that Tuesday."], ["K", "Tuesday was a different man."], ["Chris", "That's the problem, mate."]],
-      [["Chris", "Stop looking at me like that."], ["K", "Like what?"], ["Chris", "Like I'm a slow-burn romance."], ["K", "You're reading into it."], ["Chris", "I'm literally not."]]
+      [["K", "I’ve decided I’m done with men."], ["Chris", "You said that Tuesday."], ["K", "Tuesday was a different man."], ["Chris", "That’s the problem, mate."]]
     ],
     "K|Kiki": [
-      [["Kiki", "Dad says you're not to text him again."], ["K", "He texted ME."], ["Kiki", "He's mid-divorce, K."], ["K", "So am I, emotionally."]],
-      [["Kiki", "We were best friends once."], ["K", "We still are."], ["Kiki", "You're marrying my dad."], ["K", "So we'll be FRIENDS and FAMILY."]]
-    ],
-    "Kiki|Roger": [
-      [["Kiki", "Please stop dating my friends."], ["Roger", "I'm not dating them, I'm meeting them."], ["Kiki", "You met K on a boat."], ["Roger", "It was a nice boat."]]
-    ],
-    "Olivia|Josh": [
-      [["Josh", "So you're with Chris now."], ["Olivia", "I'm with someone who owns more than one towel."], ["Josh", "That's a low blow."], ["Olivia", "It's ten-in-one body wash, Josh."]],
-      [["Olivia", "Stop telling people I wasn't ready."], ["Josh", "You weren't ready."], ["Olivia", "I was ready. For anyone else."]]
-    ],
-    "Chris|Olivia": [
-      [["Olivia", "Your best friend keeps flirting with me."], ["Chris", "He flirts with everyone."], ["Olivia", "He called me his future stepdaughter."], ["Chris", "Yeah, that's just a Tuesday."]]
-    ],
-    "Josh|Steph": [
-      [["Steph", "Mum, can I borrow the car?"], ["Steph", "Josh, I'm your mother, not your Uber."], ["Josh", "So that's a no?"], ["Steph", "That's a no."]]
-    ],
-    "Jack|K": [
-      [["Jack", "You've been ignoring my calls."], ["K", "I've been busy being emotionally unavailable."], ["Jack", "That's my whole personality."], ["K", "Then we're a terrible match."]]
-    ],
-    "Kiki|Olivia": [
-      [["Olivia", "K's been calling me."], ["Kiki", "Ignore him."], ["Olivia", "He says we're 'cosmically linked'."], ["Kiki", "He says that to the postman."]]
-    ],
-    "Chris|Jack": [
-      [["Jack", "Cousin."], ["Chris", "Don't."], ["Jack", "Nobody knows."], ["Chris", "And it stays that way."]]
+      [["Kiki", "Dad says don’t text him again."], ["K", "He texted ME."], ["Kiki", "He sent you a thumbs-up."], ["K", "That’s basically foreplay for his generation."]]
     ],
     "K|Roger": [
-      [["Roger", "This is a bit awkward."], ["K", "Only if we make it awkward."], ["Roger", "You're marrying my ex-wife's..."], ["K", "Let's not do the family tree."]]
+      [["K", "What do you actually do for work?"], ["Roger", "Private markets and alternative investments."], ["K", "Is that rich-person code for unemployed?"], ["Roger", "I own three properties."], ["K", "Give it a few years and they will all be mine"]]
     ],
     "Josh|K": [
-      [["Josh", "Track eight, though."], ["K", "You got a callback."], ["Josh", "You're secretly obsessed with me."], ["K", "I'm really, really not."]]
+      [["K", "Did you get a new loofah?"], ["Josh", "Why? This one’s only two years old."], ["K", "It’s growing teeth."], ["Josh", "Bro my walls have hair."]]
+    ],
+    "Jack|K": [
+      [["Jack", "You’ve been ignoring my calls."], ["K", "I’ve been busy being emotionally unavailable."], ["Jack", "Wow."]]
+    ],
+    "Kiki|Roger": [
+      [["Kiki", "Dad, you need to stop seeing Kevin."], ["Roger", "He’s a nice young man."], ["Kiki", "He keeps calling himself my stepdad."], ["Roger", "He’s very ambitious."], ["Kiki", "He said that he’s gonna ground me."]]
+    ],
+    "Kiki|Olivia": [
+      [["Kiki", "K says he’s gonna be our stepdad :/"], ["Olivia", "He also thinks Steph’s my girlfriend."], ["Kiki", "Should we be worried?"], ["Olivia", "I’m drafting a restraining order."]]
+    ],
+    "Josh|Olivia": [
+      [["Josh", "So you’re with Chris now huh."], ["Olivia", "Yeah."], ["Josh", "What’s he got that I don’t?"], ["Olivia", "A second towel."]]
+    ],
+    "Josh|Steph": [
+      [["Steph", "How was work, sweetie?"], ["Josh", "K came in today. Think he’s still obsessed with me."], ["Steph", "Did he say that?"], ["Josh", "He asked for extra cheese, so yes."]]
+    ],
+    "K|Olivia": [
+      [["K", "Does Chris ever talk about me?"], ["Olivia", "Yeah. He said you need to return his hoodie."], ["K", "He wants me in his clothes."], ["Olivia", "He wants his clothes."], ["K", "So he wants me without any clothes on?"]]
+    ],
+    "Chris|Kiki": [
+      [["Chris", "Why’s K been acting weird since I told him I love him?"], ["Kiki", "You said WHAT?"], ["Chris", "Love ya, mate. I say it to everyone."], ["Kiki", "Oh no no no no no no no no no no NO!"]]
+    ],
+    "Chris|Olivia": [
+      [["Chris", "K keeps asking if you and I are serious."], ["Olivia", "What’d you tell him?"], ["Chris", "That I’m serious about you."], ["Olivia", "And?"], ["Chris", "He said “we’ll see”."]]
+    ],
+    "Chris|Jack": [
+      [["Chris", "So how’d you meet K?"], ["Jack", "We hooked up once."], ["Chris", "Oh. He’s my best mate."], ["Jack", "And you’re my cousin."], ["Chris", "Yeah, we should probably tell him."]]
+    ],
+    "Josh|Kiki": [
+      [["Kiki", "Have you washed that apron?"], ["Josh", "Yeah, Mum did."], ["Kiki", "When?"], ["Josh", "My birthday."], ["Kiki", "Which one?"], ["Josh", "Last year’s."]]
+    ],
+    "Chris|Roger": [
+      [["Roger", "How’s K at basketball?"], ["Chris", "Pretty good at watching."], ["Roger", "He says you’ve been practising together."], ["Chris", "He held my water bottle."], ["Roger", "He’s very dedicated."]]
     ]
   },
   "generic": {
     "friends": [
-      ["Rough week?", "You have no idea.", "Same. Same.", "Let's get chips."],
-      ["Did you see who's dating who now?", "I stopped counting.", "Wise.", "It's K, by the way.", "Of course it is."],
-      ["I'm not saying I told you so.", "You're literally saying it.", "I'm saying it.", "Fair."],
+      ["Rough week?", "You have no idea.", "Same. Same.", "Let’s get chips."],
+      ["Did you see who’s dating who now?", "I stopped counting.", "Wise.", "It’s K, by the way.", "Of course it is."],
+      ["I’m not saying I told you so.", "You’re literally saying it.", "I’m saying it.", "Fair."],
       ["You look tired.", "I am tired.", "Men?", "Men.", "Solidarity."]
     ],
     "lovers": [
-      ["You're doing that face again.", "What face?", "The one you do.", "You love the face.", "I tolerate the face."],
-      ["Date night Friday?", "I'm working.", "You're always working.", "For you, I'll move it.", "That's the spirit."],
-      ["I told my mum about you.", "How'd that go?", "She asked if you had a job.", "Rude.", "Accurate, but rude."]
+      ["You’re doing that face again.", "What face?", "The one you do.", "You love the face.", "I tolerate the face."],
+      ["Date night Friday?", "I’m working.", "You’re always working.", "For you, I’ll move it.", "That’s the spirit."],
+      ["I told my mum about you.", "How’d that go?", "She asked if you had a job.", "Rude.", "Accurate, but rude."]
     ],
     "exes": [
       ["So this is fun.", "Is it?", "Not really.", "No.", "Well. Good chat."],
-      ["You look good.", "Don't do that.", "Do what?", "The thing where you're nice.", "Noted."],
-      ["I'm not still thinking about you.", "Nobody said you were.", "I know. Just clarifying.", "Sure."]
+      ["You look good.", "Don’t do that.", "Do what?", "The thing where you’re nice.", "Noted."],
+      ["I’m not still thinking about you.", "Nobody said you were.", "I know. Just clarifying.", "Sure."]
     ],
     "family": [
-      ["You never call.", "I call.", "You text.", "Texting is calling with extra steps.", "You're impossible."],
-      ["Are you eating properly?", "Yes, Mum.", "I'm not your mum.", "You sounded like her for a second.", "Rude."],
-      ["Can I stay at yours?", "No.", "You're family.", "Exactly."]
+      ["You never call.", "I call.", "You text.", "Texting is calling with extra steps.", "You’re impossible."],
+      ["Are you eating properly?", "Yes, Mum.", "I’m not your mum.", "You sounded like her for a second.", "Rude."],
+      ["Can I stay at yours?", "No.", "You’re family.", "Exactly."]
     ],
     "siblings": [
-      ["Mum's favourite is you.", "Mum's favourite is the dog.", "True.", "Annoying, but true."],
-      ["Stop telling people my business.", "It's MY business too.", "It really isn't.", "It really is."],
+      ["Mum’s favourite is you.", "Mum’s favourite is the dog.", "True.", "Annoying, but true."],
+      ["Stop telling people my business.", "It’s MY business too.", "It really isn’t.", "It really is."],
       ["You owe me twenty.", "I owe you nothing.", "You owe me twenty.", "Fine. Later."]
     ],
     "any": [
       ["Busy day.", "You have no idea.", "Tell me about it.", "Later."],
       ["Going somewhere?", "Always.", "Fair enough.", "See you around."],
-      ["Have you seen the weather?", "I've seen it.", "Grim.", "Very grim.", "Typical."],
-      ["I heard something about you.", "You heard wrong.", "I've heard worse.", "That's true."],
-      ["This town, hey.", "This town.", "Wouldn't live anywhere else.", "You would.", "I would."],
+      ["Have you seen the weather?", "I’ve seen it.", "Grim.", "Very grim.", "Typical."],
+      ["I heard something about you.", "You heard wrong.", "I’ve heard worse.", "That’s true."],
+      ["This town, hey.", "This town.", "Wouldn’t live anywhere else.", "You would.", "I would."],
       ["Got a second?", "For you? No.", "Fair.", "What is it? Fine."],
       ["Still standing.", "Barely."],
       ["You hear about K?", "Which bit?", "All of it.", "Obviously.", "This town.", "This town."]
