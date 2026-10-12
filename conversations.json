@@ -1,34 +1,6 @@
 {
   "updated": "2026-10-12",
-  "note": "K Land walker chatter. relationships keys are the two names sorted A-Z joined with |. scripts are curated exchanges: arrays of [speaker, line]. generic banks are speaker-agnostic and assigned to either character, picked by relationship type.",
-  "relationships": {
-    "Chris|K": "friends",
-    "K|Kiki": "friends",
-    "Chris|Kiki": "friends",
-    "Olivia|Steph": "friends",
-    "Chris|Olivia": "lovers",
-    "K|Roger": "exes",
-    "Josh|K": "exes",
-    "Jack|K": "exes",
-    "Josh|Olivia": "exes",
-    "Kiki|Roger": "family",
-    "Olivia|Roger": "family",
-    "Josh|Steph": "family",
-    "Chris|Jack": "family",
-    "Kiki|Olivia": "siblings",
-    "K|Steph": "any",
-    "K|Olivia": "any",
-    "Chris|Josh": "any",
-    "Jack|Josh": "any",
-    "Jack|Olivia": "any",
-    "Jack|Roger": "any",
-    "Jack|Steph": "any",
-    "Josh|Roger": "any",
-    "Josh|Kiki": "any",
-    "Kiki|Steph": "any",
-    "Roger|Steph": "any",
-    "Chris|Roger": "any"
-  },
+  "note": "K Land walker chatter. scripts keys are the two characters' names sorted A-Z joined with |. Each entry is a list of exchanges; an exchange is a list of [speaker, line]. Only pairs listed here will talk.",
   "scripts": {
     "Chris|K": [
       [["K", "I’ve decided I’m done with men."], ["Chris", "You said that Tuesday."], ["K", "Tuesday was a different man."], ["Chris", "That’s the problem, mate."]]
@@ -74,44 +46,6 @@
     ],
     "Chris|Roger": [
       [["Roger", "How’s K at basketball?"], ["Chris", "Pretty good at watching."], ["Roger", "He says you’ve been practising together."], ["Chris", "He held my water bottle."], ["Roger", "He’s very dedicated."]]
-    ]
-  },
-  "generic": {
-    "friends": [
-      ["Rough week?", "You have no idea.", "Same. Same.", "Let’s get chips."],
-      ["Did you see who’s dating who now?", "I stopped counting.", "Wise.", "It’s K, by the way.", "Of course it is."],
-      ["I’m not saying I told you so.", "You’re literally saying it.", "I’m saying it.", "Fair."],
-      ["You look tired.", "I am tired.", "Men?", "Men.", "Solidarity."]
-    ],
-    "lovers": [
-      ["You’re doing that face again.", "What face?", "The one you do.", "You love the face.", "I tolerate the face."],
-      ["Date night Friday?", "I’m working.", "You’re always working.", "For you, I’ll move it.", "That’s the spirit."],
-      ["I told my mum about you.", "How’d that go?", "She asked if you had a job.", "Rude.", "Accurate, but rude."]
-    ],
-    "exes": [
-      ["So this is fun.", "Is it?", "Not really.", "No.", "Well. Good chat."],
-      ["You look good.", "Don’t do that.", "Do what?", "The thing where you’re nice.", "Noted."],
-      ["I’m not still thinking about you.", "Nobody said you were.", "I know. Just clarifying.", "Sure."]
-    ],
-    "family": [
-      ["You never call.", "I call.", "You text.", "Texting is calling with extra steps.", "You’re impossible."],
-      ["Are you eating properly?", "Yes, Mum.", "I’m not your mum.", "You sounded like her for a second.", "Rude."],
-      ["Can I stay at yours?", "No.", "You’re family.", "Exactly."]
-    ],
-    "siblings": [
-      ["Mum’s favourite is you.", "Mum’s favourite is the dog.", "True.", "Annoying, but true."],
-      ["Stop telling people my business.", "It’s MY business too.", "It really isn’t.", "It really is."],
-      ["You owe me twenty.", "I owe you nothing.", "You owe me twenty.", "Fine. Later."]
-    ],
-    "any": [
-      ["Busy day.", "You have no idea.", "Tell me about it.", "Later."],
-      ["Going somewhere?", "Always.", "Fair enough.", "See you around."],
-      ["Have you seen the weather?", "I’ve seen it.", "Grim.", "Very grim.", "Typical."],
-      ["I heard something about you.", "You heard wrong.", "I’ve heard worse.", "That’s true."],
-      ["This town, hey.", "This town.", "Wouldn’t live anywhere else.", "You would.", "I would."],
-      ["Got a second?", "For you? No.", "Fair.", "What is it? Fine."],
-      ["Still standing.", "Barely."],
-      ["You hear about K?", "Which bit?", "All of it.", "Obviously.", "This town.", "This town."]
     ]
   }
 }
