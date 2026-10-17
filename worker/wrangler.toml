@@ -1,0 +1,14 @@
+name = "kland-nuttin-leaderboard"
+main = "nb-leaderboard.js"
+compatibility_date = "2026-10-01"
+
+# Create the namespace once and paste the id it prints below:
+#   npx wrangler kv namespace create NB_SCORES
+[[kv_namespaces]]
+binding = "NB_SCORES"
+id = "PASTE_THE_KV_NAMESPACE_ID_HERE"
+
+# Free plan, no custom domain needed: workers.dev serves the URL, and unlike a free Supabase project
+# the Worker and its KV data are never paused for being idle. Free-plan ceilings are 100k requests
+# and 100k KV reads a day, with 1k KV writes; a shift costs one read, three writes and a couple of
+# list calls, so the board only shows its limits somewhere in the region of 300 shifts a day.
