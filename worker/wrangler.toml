@@ -6,7 +6,7 @@ compatibility_date = "2026-10-01"
 #   npx wrangler kv namespace create NB_SCORES
 [[kv_namespaces]]
 binding = "NB_SCORES"
-id = "PASTE_THE_KV_NAMESPACE_ID_HERE"
+id = "dcc42669dec444e4b29cdfcbd161887a"
 
 # Free plan, no custom domain needed: workers.dev serves the URL, and unlike a free Supabase project
 # the Worker and its KV data are never paused for being idle. Free-plan ceilings are 100k requests

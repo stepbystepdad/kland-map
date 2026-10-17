@@ -76,6 +76,28 @@ function topRows(env) {
   });
 }
 
+// board order: score first, then the earlier shift, matching the s:<999999-score>:<at>:<id> key order
+function better(a, b) {
+  return a.score > b.score || (a.score === b.score && a.at < b.at);
+}
+
+function rankOf(top, row) {
+  var rank = 1;
+  for (var i = 0; i < top.length; i++) if (better(top[i], row)) rank++;
+  return rank > TOP ? null : rank;
+}
+
+function spliceRow(top, row) {
+  var out = [];
+  var placed = false;
+  for (var i = 0; i < top.length; i++) {
+    if (!placed && better(row, top[i])) { out.push(row); placed = true; }
+    out.push(top[i]);
+  }
+  if (!placed) out.push(row);
+  return out.slice(0, TOP);
+}
+
 function total(env) {
   return env.NB_SCORES.get('meta:count').then(function (v) {
     return Number(v) || 0;
@@ -104,32 +126,44 @@ function submit(env, body, headers) {
   var hour = Math.floor(Date.now() / 3600000);
   var rlKey = 'rl:' + (visitor || 'anon') + ':' + hour;
 
-  return env.NB_SCORES.get('run:' + id).then(function (seen) {
+  // The top of the board is read *before* the row is written. A list() taken after a put() can still
+  // miss the key just written, because KV is eventually consistent and its list index lags the
+  // write; ranking against the pre-write list is deterministic and needs no waiting. The new row is
+  // spliced into that list in its correct place, so the reply carries the true board either way.
+  return Promise.all([
+    env.NB_SCORES.get('run:' + id),
+    env.NB_SCORES.get(rlKey),
+    topRows(env)
+  ]).then(function (res) {
+    var seen = res[0];
+    var used = res[1];
+    var before = res[2];
+
     if (seen) return json({ ok: false, error: 'that run is already on the board' }, 409, headers);
-    return env.NB_SCORES.get(rlKey).then(function (used) {
-      if ((Number(used) || 0) >= PER_HOUR) return json({ ok: false, error: 'slow down' }, 429, headers);
-      return env.NB_SCORES.put(rlKey, String((Number(used) || 0) + 1), { expirationTtl: 7200 })
-        .then(function () {
-          var at = Date.now();
-          return env.NB_SCORES.put(entryKey(score, at, id), '', { metadata: { n: name, s: score, o: orders } });
-        })
-        .then(function () { return env.NB_SCORES.put('run:' + id, '1', { expirationTtl: RUN_TTL }); })
-        .then(function () {
-          return total(env).then(function (count) {
-            count += 1;
-            return env.NB_SCORES.put('meta:count', String(count)).then(function () { return count; });
-          });
-        })
-        .then(function (count) {
-          return topRows(env).then(function (top) {
-            var rank = 0;
-            for (var i = 0; i < top.length; i++) {
-              if (top[i].name === name && top[i].score === score) { rank = i + 1; break; }
-            }
-            return json({ ok: true, rank: rank || null, total: count, top: top }, 200, headers);
+    if ((Number(used) || 0) >= PER_HOUR) return json({ ok: false, error: 'slow down' }, 429, headers);
+
+    return env.NB_SCORES.put(rlKey, String((Number(used) || 0) + 1), { expirationTtl: 7200 })
+      .then(function () {
+        var at = Date.now();
+        return env.NB_SCORES.put(entryKey(score, at, id), '', { metadata: { n: name, s: score, o: orders } })
+          .then(function () { return at; });
+      })
+      .then(function (at) {
+        return env.NB_SCORES.put('run:' + id, '1', { expirationTtl: RUN_TTL })
+          .then(function () { return at; });
+      })
+      .then(function (at) {
+        return total(env).then(function (count) {
+          count += 1;
+          return env.NB_SCORES.put('meta:count', String(count)).then(function () {
+            return { at: at, count: count };
           });
         });
-    });
+      })
+      .then(function (st) {
+        var row = { name: name, score: score, orders: orders, at: st.at };
+        return json({ ok: true, rank: rankOf(before, row), total: st.count, top: spliceRow(before, row) }, 200, headers);
+      });
   });
 }
 

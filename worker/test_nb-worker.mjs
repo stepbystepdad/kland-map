@@ -98,5 +98,51 @@ check('and descends from there', j.top.every((x, i) => i === 0 || j.top[i - 1].s
 r = await run('run-outside-top', 10, 0, 'TINY', 'visitor-tiny');
 check('a score outside the top 20 reports no rank', JSON.parse(r.json).rank === null, JSON.parse(r.json).rank);
 
+console.log('worker: a board list that lags the write');
+// Cloudflare's KV list index trails a put, so a top-of-board list taken right after a write can still
+// be missing the row that was just written. The reply must not depend on that list catching up.
+function laggyKV(lagMs) {
+  const m = new Map();
+  const born = new Map();
+  return {
+    _m: m,
+    async get(k) { const e = m.get(k); return e === undefined ? null : e.value; },
+    async put(k, v, opts) {
+      m.set(k, { value: v, metadata: (opts && opts.metadata) || null });
+      born.set(k, Date.now());
+    },
+    async list({ prefix = '', limit = 1000 } = {}) {
+      const now = Date.now();
+      const keys = [...m.entries()]
+        .filter(([k]) => k.startsWith(prefix))
+        .filter(([k]) => !(born.has(k) && now - born.get(k) < lagMs))
+        .map(([k, e]) => ({ name: k, metadata: e.metadata }))
+        .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+      return { keys: keys.slice(0, limit), list_complete: keys.length <= limit };
+    },
+  };
+}
+
+const lagEnv = { NB_SCORES: laggyKV(400) };
+const lagRun = (id, score, orders, name, visitor) =>
+  worker.fetch(new Request('https://nb.example/scores', {
+    method: 'POST',
+    headers: { origin: SITE, 'content-type': 'application/json' },
+    body: JSON.stringify({ id, name, score, orders, visitor }),
+  }), lagEnv).then(async (r) => ({ status: r.status, json: JSON.parse(await r.text()) }));
+
+let g = await lagRun('lag-run-0001', 900, 1, 'FIRST', 'v-lag1');
+check('a row still ranks while its own key lags out of the list',
+  g.status === 200 && g.json.rank === 1 && g.json.top.length === 1 && g.json.top[0].name === 'FIRST', g.json);
+
+await new Promise((res) => setTimeout(res, 500));
+g = await lagRun('lag-run-0002', 400, 1, 'SECOND', 'v-lag2');
+check('a later row sees the earlier one and takes rank 2',
+  g.status === 200 && g.json.rank === 2 && g.json.top.length === 2 && g.json.top[1].name === 'SECOND', g.json);
+
+g = await lagRun('lag-run-0003', 9000, 1, 'KING', 'v-lag3');
+check('a row better than the lagging board still takes rank 1',
+  g.status === 200 && g.json.rank === 1 && g.json.top[0].name === 'KING', g.json);
+
 console.log('\n' + pass + ' passed, ' + fail + ' failed');
 process.exit(fail ? 1 : 0);
