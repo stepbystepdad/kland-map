@@ -1,4 +1,4 @@
-/* Nuttin' Burger leaderboard, shared through Supabase.
+/* Nuttin' Burger leaderboard, shared through a Cloudflare Worker.
  *
  * This lives in the map bundle rather than in the game because the bundle is loaded through
  * version.json, so it ships without editing the Squarespace code block that pins
@@ -112,38 +112,38 @@
   /* ---------- styles ---------- */
 
   var CSS = [
-    '#nb-board-root,#nb-save{position:fixed;z-index:2147483600;font-family:"Work Sans","Trebuchet MS",Arial,sans-serif;color:#241824}',
-    '#nb-board-root{inset:0;display:grid;place-items:center;padding:18px}',
-    '#nb-board-root[hidden],#nb-save[hidden]{display:none}',
+    '#nb-board-root{position:fixed;inset:0;z-index:2147483600;display:flex;align-items:center;justify-content:center;padding:12px;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));font-family:"Work Sans","Trebuchet MS",Arial,sans-serif;color:#241824;overflow:auto}',
+    '#nb-board-root[hidden]{display:none}',
+    '#nb-board-root *{box-sizing:border-box}',
     '#nb-board-root .nbb-scrim{position:absolute;inset:0;background:rgba(26,16,32,.66)}',
-    '#nb-board-root .nbb-card{position:relative;width:min(430px,100%);max-height:min(86dvh,700px);display:flex;flex-direction:column;background:#fff8ee;border:2px solid #241824;border-radius:20px;padding:20px 20px 16px;box-shadow:0 10px 0 rgba(243,41,130,.55)}',
-    '#nb-board-root .nbb-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:2px solid rgba(36,24,36,.14);padding-bottom:12px}',
-    '#nb-board-root .nbb-head h2{margin:0;font-family:"Dela Gothic One","Arial Black",Arial,sans-serif;font-size:22px;line-height:1.05}',
-    '#nb-board-root .nbb-sub{margin:6px 0 0;font-size:10.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:#c91965}',
-    '#nb-board-root .nbb-x{border:1.5px solid rgba(36,24,36,.25);background:#fff3f7;border-radius:11px;min-width:44px;min-height:44px;font-size:15px;font-weight:800;cursor:pointer;color:#241824}',
-    '#nb-board-root .nbb-rows{list-style:none;margin:12px 0 0;padding:0;overflow:auto;flex:1 1 auto;display:flex;flex-direction:column;gap:6px;min-height:60px}',
+    '#nb-board-root .nbb-card{position:relative;width:min(440px,100%);max-height:100%;min-height:0;display:flex;flex-direction:column;background:#fff8ee;border:2px solid #241824;border-radius:20px;padding:20px 20px 16px;box-shadow:0 10px 0 rgba(243,41,130,.55)}',
+    '#nb-board-root .nbb-head{flex:0 0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:2px solid rgba(36,24,36,.14);padding-bottom:12px}',
+    '#nb-board-root .nbb-head h2{margin:0;color:#241824;font-family:"Dela Gothic One","Arial Black",Arial,sans-serif;font-size:22px;line-height:1.05;letter-spacing:0;text-transform:none}',
+    '#nb-board-root .nbb-sub{margin:6px 0 0;color:#c91965;font-size:10.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase}',
+    '#nb-board-root .nbb-x{flex:0 0 auto;width:44px;height:44px;min-width:44px;border:1.5px solid rgba(36,24,36,.25);background:#fff3f7;border-radius:11px;font-size:15px;font-weight:800;line-height:1;cursor:pointer;color:#241824}',
+    '#nb-board-root .nbb-run{flex:0 0 auto;padding:12px 0 0}',
+    '#nb-board-root .nbb-run[hidden]{display:none}',
+    '#nb-board-root .nbb-msg{margin:0;color:#241824;font-size:12.5px;font-weight:700;line-height:1.35}',
+    '#nb-board-root .nbb-inputrow{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}',
+    '#nb-board-root .nbb-inputrow[hidden]{display:none}',
+    '#nb-board-root .nbb-input{flex:1 1 130px;min-width:0;min-height:44px;padding:8px 11px;font:700 13px "Work Sans",Arial,sans-serif;color:#241824;background:#fff3f7;border:2px solid #241824;border-radius:11px}',
+    '#nb-board-root .nbb-run-go,#nb-board-root .nbb-run-no{cursor:pointer;font-weight:800;border:2px solid #241824;border-radius:11px;padding:11px 16px;font-size:12.5px}',
+    '#nb-board-root .nbb-run-go{color:#fff;background:#f32982;box-shadow:0 4px 0 #a30f57}',
+    '#nb-board-root .nbb-run-no{color:#241824;background:transparent;border-color:rgba(36,24,36,.25)}',
+    '#nb-board-root .nbb-rows{list-style:none;margin:12px 0 0;padding:0;overflow:auto;-webkit-overflow-scrolling:touch;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:6px}',
     '#nb-board-root .nbb-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:baseline;gap:2px 10px;background:#fff3f7;border:1.5px solid rgba(36,24,36,.14);border-radius:12px;padding:9px 12px}',
     '#nb-board-root .nbb-row.mine{border-color:#f32982;box-shadow:0 3px 0 rgba(243,41,130,.35)}',
     '#nb-board-root .nbb-rank{font-family:"Dela Gothic One",Arial,sans-serif;font-size:15px;color:#c91965}',
     '#nb-board-root .nbb-row:nth-child(-n+3) .nbb-rank{color:#f32982}',
-    '#nb-board-root .nbb-name{font-weight:800;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
-    '#nb-board-root .nbb-orders{grid-column:2;font-size:10.5px;font-weight:700;letter-spacing:.6px;color:#a98a99}',
-    '#nb-board-root .nbb-score{font-family:"Dela Gothic One",Arial,sans-serif;font-size:16px;text-align:right}',
-    '#nb-board-root .nbb-status{margin:10px 0 0;font-size:11.5px;font-weight:700;min-height:16px;color:#a98a99}',
-    '#nb-board-root .nbb-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;border-top:2px solid rgba(36,24,36,.14);padding-top:12px}',
-    '#nb-board-root .nbb-you{font-size:11.5px;font-weight:700;color:#241824}',
+    '#nb-board-root .nbb-name{color:#241824;font-weight:800;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+    '#nb-board-root .nbb-orders{grid-column:2;color:#a98a99;font-size:10.5px;font-weight:700;letter-spacing:.6px}',
+    '#nb-board-root .nbb-score{color:#241824;font-family:"Dela Gothic One",Arial,sans-serif;font-size:16px;text-align:right}',
+    '#nb-board-root .nbb-status{flex:0 0 auto;margin:10px 0 0;color:#a98a99;font-size:11.5px;font-weight:700;min-height:16px}',
+    '#nb-board-root .nbb-foot{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;border-top:2px solid rgba(36,24,36,.14);padding-top:12px}',
+    '#nb-board-root .nbb-you{color:#241824;font-size:11.5px;font-weight:700}',
     '#nb-board-root .nbb-btn{cursor:pointer;font-weight:800;border:2px solid #241824;border-radius:11px;padding:9px 14px;font-size:12.5px}',
     '#nb-board-root .nbb-ghost{background:#fff3f7;color:#241824}',
-    '#nb-save{left:50%;top:14px;transform:translateX(-50%);width:min(430px,calc(100% - 24px));background:#fff8ee;border:2px solid #241824;border-radius:16px;padding:12px 14px;box-shadow:0 6px 0 rgba(243,41,130,.5);text-align:center}',
-    '#nb-save .nbs-msg{margin:0;font-size:12.5px;font-weight:700;line-height:1.35}',
-    '#nb-save .nbs-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;justify-content:center}',
-    '#nb-save .nbs-row[hidden]{display:none}',
-    '#nb-save .nbs-input{flex:1 1 130px;min-height:44px;padding:8px 11px;font:700 13px "Work Sans",Arial,sans-serif;color:#241824;background:#fff3f7;border:2px solid #241824;border-radius:11px}',
-    '#nb-save .nbs-go,#nb-save .nbs-see{cursor:pointer;font-weight:800;color:#fff;background:#f32982;border:2px solid #241824;border-radius:11px;padding:11px 16px;font-size:12.5px;box-shadow:0 4px 0 #a30f57}',
-    '#nb-save .nbs-no{cursor:pointer;font-weight:700;color:#241824;background:transparent;border:2px solid rgba(36,24,36,.25);border-radius:11px;padding:11px 14px;font-size:12.5px}',
-    '#nb-save .nbs-see{margin-top:10px}',
-    '#nb-save .nbs-see[hidden]{display:none}',
-    '@media(max-width:560px){#nb-board-root .nbb-card{padding:16px 14px 12px}#nb-board-root .nbb-head h2{font-size:19px}}'
+    '@media(max-width:560px){#nb-board-root{padding:8px;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}#nb-board-root .nbb-card{padding:14px 13px 11px;border-radius:16px}#nb-board-root .nbb-head h2{font-size:19px}#nb-board-root .nbb-x{width:40px;height:40px;min-width:40px}#nb-board-root .nbb-run-go,#nb-board-root .nbb-run-no{padding:10px 13px}#nb-board-root .nbb-name{font-size:13px}#nb-board-root .nbb-score{font-size:15px}}'
   ].join('\n');
 
   function ensureFonts() {
@@ -157,8 +157,9 @@
 
   /* ---------- the board overlay ---------- */
 
-  var board, rowsEl, statusEl, youEl;
+  var board, rowsEl, statusEl, youEl, titleEl, subEl, runEl, msgEl, inputRowEl, inputEl, runGo, runNo;
   var lastBoard = null;
+  var pending = { score: 0, orders: 0 };
 
   function buildBoard() {
     if (board) return;
@@ -175,8 +176,11 @@
       '<div class="nbb-scrim" data-close="1"></div>',
       '<div class="nbb-card" role="dialog" aria-modal="true" aria-labelledby="nbb-title">',
       '<div class="nbb-head"><div><h2 id="nbb-title">TOP SHIFTS</h2>',
-      '<p class="nbb-sub">Nuttin\u2019 Burger \u00b7 Josh\u2019s High-Stack Shift</p></div>',
-      '<button type="button" class="nbb-x" data-close="1" aria-label="Close the leaderboard">\u2715</button></div>',
+      '<p class="nbb-sub" id="nbb-sub"></p></div>',
+      '<button type="button" class="nbb-x" data-close="1" aria-label="Close">\u2715</button></div>',
+      '<div class="nbb-run" hidden><p class="nbb-msg" role="status" aria-live="polite"></p>',
+      '<div class="nbb-inputrow" hidden><input class="nbb-input" maxlength="24" type="text" placeholder="Your name" aria-label="Name to show on the leaderboard">',
+      '<button type="button" class="nbb-run-go">Save my score</button><button type="button" class="nbb-run-no">No thanks</button></div></div>',
       '<ol class="nbb-rows"></ol>',
       '<p class="nbb-status"></p>',
       '<div class="nbb-foot"><span class="nbb-you"></span>',
@@ -188,6 +192,27 @@
     rowsEl = board.querySelector('.nbb-rows');
     statusEl = board.querySelector('.nbb-status');
     youEl = board.querySelector('.nbb-you');
+    titleEl = board.querySelector('#nbb-title');
+    subEl = board.querySelector('#nbb-sub');
+    runEl = board.querySelector('.nbb-run');
+    msgEl = board.querySelector('.nbb-msg');
+    inputRowEl = board.querySelector('.nbb-inputrow');
+    inputEl = board.querySelector('.nbb-input');
+    runGo = board.querySelector('.nbb-run-go');
+    runNo = board.querySelector('.nbb-run-no');
+
+    runGo.addEventListener('click', function () {
+      var n = rememberName(inputEl.value);
+      if (!n) { inputEl.focus(); return; }
+      inputRowEl.hidden = true;
+      submitRun(pending.score, pending.orders, n);
+    });
+    inputEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') runGo.click(); });
+    runNo.addEventListener('click', function () {
+      inputRowEl.hidden = true;
+      msgEl.textContent = 'No score sent. Your personal best still counts.';
+    });
+
     board.addEventListener('click', function (e) {
       var t = e.target;
       if (!t || !t.getAttribute) return;
@@ -240,106 +265,76 @@
     });
   }
 
-  function openBoard() {
+  // One card carries both halves: the run result (and its name field) on top, the board below.
+  // Open from a finished run, or from the toolbar button to just read the board.
+  function openBoard(mode, run) {
     buildBoard();
-    if (!board.hidden) return;
-    board.hidden = false;
-    pauseGame(true);
-    var x = board.querySelector('.nbb-x');
-    if (x && x.focus) x.focus();
+    var isRun = mode === 'run';
+    titleEl.textContent = isRun ? 'YOU\u2019RE COOKED' : 'TOP SHIFTS';
+    subEl.textContent = isRun && run
+      ? 'You scored ' + fmt(run.score) + (run.orders ? ' \u00b7 ' + run.orders + (Number(run.orders) === 1 ? ' order' : ' orders') + ' served' : '') + '.'
+      : 'Nuttin\u2019 Burger \u00b7 Josh\u2019s High-Stack Shift';
+    runEl.hidden = !isRun;
+    if (!isRun) { inputRowEl.hidden = true; msgEl.textContent = ''; }
+    else if (run) pending = run;
+    if (board.hidden) {
+      board.hidden = false;
+      if (!isRun) pauseGame(true);
+      var x = board.querySelector('.nbb-x');
+      if (x && x.focus) x.focus();
+    }
     refreshBoard();
   }
 
   function closeBoard() {
     if (!board || board.hidden) return;
     board.hidden = true;
+    runEl.hidden = true;
     pauseGame(false);
     var c = gameCanvas();
     if (c && c.focus) c.focus();
   }
 
-  /* ---------- post-run banner ---------- */
-
-  var save, saveMsg, saveRow, saveInput, saveGo, saveSee;
-  var pending = { score: 0, orders: 0 };
-
-  function buildSave() {
-    if (save) return;
-    ensureFonts();
-    if (!document.getElementById('nb-board-styles')) {
-      var style = document.createElement('style');
-      style.id = 'nb-board-styles';
-      style.textContent = CSS;
-      document.head.appendChild(style);
-    }
-    save = document.createElement('div');
-    save.id = 'nb-save';
-    save.hidden = true;
-    save.innerHTML = [
-      '<p class="nbs-msg" role="status" aria-live="polite"></p>',
-      '<div class="nbs-row" hidden><input class="nbs-input" maxlength="24" type="text" placeholder="Your name" aria-label="Name to show on the leaderboard">',
-      '<button type="button" class="nbs-go">Save my score</button><button type="button" class="nbs-no">No thanks</button></div>',
-      '<button type="button" class="nbs-see" hidden>See the board</button>'
-    ].join('');
-    document.body.appendChild(save);
-    saveMsg = save.querySelector('.nbs-msg');
-    saveRow = save.querySelector('.nbs-row');
-    saveInput = save.querySelector('.nbs-input');
-    saveGo = save.querySelector('.nbs-go');
-    saveSee = save.querySelector('.nbs-see');
-    var no = save.querySelector('.nbs-no');
-    saveGo.addEventListener('click', function () {
-      var n = rememberName(saveInput.value);
-      if (!n) { saveInput.focus(); return; }
-      saveRow.hidden = true;
-      submitRun(pending.score, pending.orders, n);
-    });
-    saveInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') saveGo.click(); });
-    no.addEventListener('click', hideSave);
-    saveSee.addEventListener('click', function () { hideSave(); openBoard(); });
-  }
-
-  function showSave(html) { buildSave(); saveMsg.textContent = html; save.hidden = false; }
-  function hideSave() { if (save) save.hidden = true; }
-
-  /* ---------- submit ---------- */
+  /* ---------- post-run flow ---------- */
 
   function afterRun(score, orders) {
     pending = { score: score, orders: orders };
     if (score < 1 || score > MAX_SCORE) return;
+    openBoard('run', { score: score, orders: orders });
     if (recentSubmits().length >= PER_HOUR) {
-      showSave('That is a lot of shifts at once. Board submissions are paused for a bit \u2014 your personal best still stands.');
+      msgEl.textContent = 'That is a lot of shifts at once. Board submissions are paused for a bit \u2014 your personal best still stands.';
       return;
     }
     var nm = storedName();
     if (!nm) {
-      showSave('You scored ' + fmt(score) + '. Put a name on the board?');
-      saveRow.hidden = false;
-      try { saveInput.focus(); } catch (e) {}
+      msgEl.textContent = 'You scored ' + fmt(score) + '. Put a name on the board?';
+      inputRowEl.hidden = false;
+      try { inputEl.focus(); } catch (e) {}
       return;
     }
+    inputRowEl.hidden = true;
     submitRun(score, orders, nm);
   }
 
   function submitRun(score, orders, nm) {
     noteSubmit();
-    showSave('Saving your shift\u2026');
+    runEl.hidden = false;
+    msgEl.textContent = 'Saving your shift\u2026';
     postScore({ id: uuid(), name: nm, score: score, orders: orders, visitor: visitor() })
       .then(function (r) {
         var rank = Number(r.rank) || 0;
         // report the save before touching the board, so a render problem can never be mistaken for
         // a submission that did not land
-        showSave(rank
+        msgEl.textContent = rank
           ? 'Saved \u2014 ' + nm + ' is #' + rank + ' with ' + fmt(score) + '.'
-          : 'Saved \u2014 ' + fmt(score) + ' for ' + nm + '. Not in the top ' + TOP + ' yet.');
-        saveSee.hidden = false;
+          : 'Saved \u2014 ' + fmt(score) + ' for ' + nm + '. Not in the top ' + TOP + ' yet.';
         try {
           lastBoard = r.top || lastBoard;
           renderBoard({ rows: lastBoard || [], status: r.total ? r.total + ' shifts logged' : '' });
         } catch (e) {}
       })
       .catch(function () {
-        showSave('Could not reach the board just now. Your score still counts as a personal best.');
+        msgEl.textContent = 'Could not reach the board just now. Your score still counts as a personal best.';
       });
   }
 
@@ -386,7 +381,7 @@
     b.className = 'nb-tool nb-board';
     b.textContent = '\ud83c\udfc6 Board';
     b.setAttribute('aria-label', 'Open the Nuttin\u2019 Burger leaderboard');
-    b.addEventListener('click', function () { openBoard(); });
+    b.addEventListener('click', function () { openBoard('view'); });
     var closeBtn = bar.querySelector('.nb-close');
     bar.insertBefore(b, closeBtn || null);
     boardBtn = b;
@@ -418,7 +413,6 @@
     var g = gameRoot();
     if (!g) {
       boardBtn = null;
-      hideSave();
       if (board && !board.hidden) closeBoard();
       return;
     }
