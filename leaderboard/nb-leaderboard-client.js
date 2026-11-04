@@ -423,7 +423,9 @@
   function watch() {
     var d;
     try { d = frame.contentDocument; } catch (e) { d = null; }
-    if (!d) return;
+    // The host replaces srcdoc while applying its map patches. During that
+    // navigation contentDocument can exist before its root element does.
+    if (!d || !d.documentElement) return;
     if (d !== doc) {
       doc = d;
       if (observer) observer.disconnect();
