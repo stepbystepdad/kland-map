@@ -1,0 +1,96 @@
+{
+  "source_html_bytes": 2124613,
+  "html_bytes": 116791,
+  "script_count": 39,
+  "embedded_images": {
+    "/assets/33b6d5be2f851809.webp": {
+      "type": "image/webp",
+      "bytes": 18960
+    },
+    "/assets/c62cf5d98036b668.webp": {
+      "type": "image/webp",
+      "bytes": 22052
+    },
+    "/assets/d40d2b19f00791fb.webp": {
+      "type": "image/webp",
+      "bytes": 34322
+    },
+    "/assets/3f640df35cd6b055.webp": {
+      "type": "image/webp",
+      "bytes": 47786
+    },
+    "/assets/b300fc238902f640.webp": {
+      "type": "image/webp",
+      "bytes": 72804
+    },
+    "/assets/33b79194606593d7.webp": {
+      "type": "image/webp",
+      "bytes": 203158
+    },
+    "/assets/4386aecf4d0fee22.webp": {
+      "type": "image/webp",
+      "bytes": 70464
+    },
+    "/assets/f248f65f1eeb992d.webp": {
+      "type": "image/webp",
+      "bytes": 93968
+    },
+    "/assets/5954b4aa85b51edb.webp": {
+      "type": "image/webp",
+      "bytes": 12924
+    },
+    "/assets/8aa57640f46ffa34.png": {
+      "type": "image/png",
+      "bytes": 368622
+    },
+    "/assets/11bbc29891db70d6.avif": {
+      "type": "image/avif",
+      "bytes": 21519
+    },
+    "/assets/4bda7ee19249fdd6.avif": {
+      "type": "image/avif",
+      "bytes": 24732
+    },
+    "/assets/0e6fa11758456ef2.avif": {
+      "type": "image/avif",
+      "bytes": 20450
+    },
+    "/assets/a2fc8420878d946a.avif": {
+      "type": "image/avif",
+      "bytes": 14223
+    },
+    "/assets/109226a21a67af44.avif": {
+      "type": "image/avif",
+      "bytes": 15521
+    },
+    "/assets/2392520a8699f86a.webp": {
+      "type": "image/webp",
+      "bytes": 11716
+    },
+    "/assets/249316ca6525587f.webp": {
+      "type": "image/webp",
+      "bytes": 9630
+    },
+    "/assets/f0fd1a1f666b5354.webp": {
+      "type": "image/webp",
+      "bytes": 11564
+    },
+    "/assets/9276bb6faa416733.webp": {
+      "type": "image/webp",
+      "bytes": 12616
+    },
+    "/assets/fc49e4733b9c3c14.webp": {
+      "type": "image/webp",
+      "bytes": 13682
+    },
+    "/assets/44b2f2a39f976645.webp": {
+      "type": "image/webp",
+      "bytes": 11656
+    },
+    "/assets/94f83ef24684807b.webp": {
+      "type": "image/webp",
+      "bytes": 10302
+    }
+  },
+  "assets": 268
+}

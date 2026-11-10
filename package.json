@@ -1,0 +1,10 @@
+{
+  "name": "kland-standalone",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --use-env-proxy standalone/scripts/dev.mjs",
+    "build": "python standalone/scripts/build.py",
+    "test": "node standalone/scripts/test.mjs"
+  }
+}

@@ -1,0 +1,3 @@
+standalone/dist/
+standalone/source/asset-download-failures.json
+__pycache__/
