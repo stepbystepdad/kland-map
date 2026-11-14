@@ -1715,36 +1715,27 @@ renderSpots();renderPlaces();renderCharacters();renderMusic();renderPostcards();
 @media(prefers-reduced-motion:reduce){.kland-hover-bounce{animation:none!important}}
 .song-player-container{width:100%;min-height:152px;margin:16px 0}.song-player-container iframe{width:100%;height:152px;border:0;border-radius:12px}.song-player-container .song-player{margin:0!important}
 #story audio{display:none!important}
-.psychic-game{padding:16px;background:#17141b;border:1px solid #594454;border-radius:18px;text-align:center;color:#f8edf3}
+.psychic-game{padding:16px;background:#17141b;border:2px solid #594454;border-radius:18px;text-align:center;color:#f8edf3}
 .vault-kicker{margin:0 0 12px;color:#ffadd2;font:800 11px/1.4 system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase}
-.vault-door{position:relative;isolation:isolate;padding:20px 14px 16px;border:8px solid #6c6974;border-radius:16px;background:repeating-linear-gradient(100deg,#ffffff04 0 1px,transparent 1px 4px),linear-gradient(135deg,#53515d,#25232e 55%,#41404b);box-shadow:inset 0 0 0 2px #17151d,inset 0 0 28px #0009,0 4px 0 #0b0910;transition:border-color .35s,box-shadow .35s}
-.vault-door:before,.vault-door:after{content:"";position:absolute;left:-12px;width:13px;height:34px;border:2px solid #8c8794;border-radius:4px;background:linear-gradient(90deg,#27232d,#9b96a1,#36323d);box-shadow:0 2px 4px #0008}
-.vault-door:before{top:22px}.vault-door:after{bottom:22px}
-.vault-plate{margin:0;color:#e2dce6;font:800 10px/1.5 system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase}
-.vault-wheel{width:100px;height:100px;margin:10px auto 14px;filter:drop-shadow(0 4px 3px #0009);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-.vault-wheel svg{display:block;width:100%;height:100%}
-.vault-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:0;padding:0;border:0;min-width:0}
-.vault-slot{display:flex;min-width:0;flex-direction:column;align-items:center;gap:7px}
-.vault-slot:before{content:"";width:7px;height:7px;border-radius:50%;background:#674653;box-shadow:inset 0 1px 2px #0008}
-.vault-slot-label{color:#d2c4d0;font:700 9px/1 system-ui,sans-serif;letter-spacing:.05em}
-.psychic-game .vault-number{box-sizing:border-box;width:100%;min-width:0;height:48px;padding:0;border:2px solid #90818f;border-radius:7px;background:#100f16;color:#ffbbd9;text-align:center;font:800 clamp(18px,5vw,24px)/1 monospace;font-variant-numeric:tabular-nums;letter-spacing:.02em;box-shadow:inset 0 3px 8px #0009;appearance:none}
-.psychic-game .vault-number::placeholder{color:#675768;opacity:1}
-.psychic-game .vault-number:focus-visible{outline:3px solid #ff8cbd;outline-offset:3px}
-.vault-hint{min-height:2.5em;color:#e0c9d7;font:700 10px/1.25 system-ui,sans-serif}
-.vault-slot.is-locked:before{background:#9aefb6;box-shadow:0 0 8px #80e6a688}
-.vault-slot.is-locked .vault-number{color:#b8f7cb;border-color:#89cda0;background:#11231c}
-.vault-slot.is-locked .vault-hint{color:#b8f7cb}
-.vault-slot.is-wrong .vault-number{border-color:#ef9caa}
-.vault-status{margin:15px 0 12px;min-height:2.8em;color:#e8d6e1;font:500 13px/1.45 system-ui,sans-serif}
-.psychic-game .vault-check,.psychic-game .psychic-play{box-sizing:border-box;width:100%;min-height:44px;padding:12px 14px;border:1px solid #ffb6d4;border-radius:10px;background:#ff8fbd;color:#25131e;font:800 13px/1.3 system-ui,sans-serif;cursor:pointer}
-.psychic-game .vault-check:focus-visible,.psychic-game .psychic-play:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.psychic-game .vault-check:disabled{background:#b8f7cb;border-color:#89cda0;color:#143922;cursor:default;opacity:1}
-.psychic-game.is-unlocked .vault-door{border-color:#7bb28c;box-shadow:inset 0 0 0 2px #14251a,inset 0 0 28px #0009,0 0 22px #85e4a522}
-.psychic-game.is-unlocked .vault-wheel{transform:rotate(120deg)}
-.psychic-game.is-unlocked .vault-plate,.psychic-game.is-unlocked .vault-status{color:#b8f7cb}
-.psychic-reward:empty{display:none}.psychic-reward .psychic-play{margin-top:12px}
-@media(max-width:360px){.psychic-game{padding:12px}.vault-door{padding-left:10px;padding-right:10px}.vault-slots{gap:4px}.vault-slot-label{font-size:8px}.vault-hint{font-size:9px}}
-@media(prefers-reduced-motion:reduce){.vault-door,.vault-wheel{transition:none}}
+.vault-stage{position:relative;perspective:1000px;margin:0 8px 0 0;border:5px solid #241824;border-radius:18px;background:#120c15;box-shadow:0 4px 0 #050308}
+.vault-chamber{position:absolute;inset:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border-radius:12px;background:radial-gradient(ellipse at center,#f787bb44,transparent 70%),#170f1c;color:#ffc7dc;overflow:hidden}
+.vault-chamber strong{font:900 clamp(22px,7vw,34px)/1.1 'Trebuchet MS',sans-serif;letter-spacing:.08em;text-shadow:0 3px #241824}.vault-chamber>span{font:800 9px/1.4 system-ui,sans-serif;letter-spacing:.14em}
+.vault-record{display:grid;place-items:center;width:112px;height:112px;border:4px solid #ffadd2;border-radius:50%;background:repeating-radial-gradient(circle,#241824 0 3px,#483344 4px 5px);color:#ff8fbd;font-size:62px;box-shadow:0 0 22px #ff65a744;transform:scale(.7);transition:transform .8s .45s}
+.vault-door{position:relative;isolation:isolate;padding:16px 12px 12px;border:7px solid #8c8794;border-radius:12px;background:repeating-linear-gradient(100deg,#ffffff04 0 1px,transparent 1px 4px),linear-gradient(135deg,#53515d,#25232e 55%,#41404b);box-shadow:inset 0 0 0 2px #17151d,inset 0 0 28px #0009,0 4px 0 #0b0910;transform-origin:left center;backface-visibility:hidden;transition:transform .95s .35s cubic-bezier(.3,.6,.25,1),border-color .35s}
+.vault-door:before,.vault-door:after{content:"";position:absolute;left:-13px;width:13px;height:34px;border:2px solid #241824;border-radius:4px;background:linear-gradient(90deg,#27232d,#b0a8b7,#36323d);box-shadow:0 2px 4px #0008}.vault-door:before{top:22px}.vault-door:after{bottom:22px}
+.vault-bolt{position:absolute;right:-17px;width:18px;height:13px;border:2px solid #241824;border-radius:3px;background:linear-gradient(#d7cddc,#77707f);transition:transform .35s,background .35s;z-index:-1}.vault-bolt.is-retracted{transform:translateX(-14px);background:#9aefb6}
+.vault-plate{margin:0;color:#e2dce6;font:800 10px/1.5 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.vault-wheel{width:88px;height:88px;margin:12px auto 16px;filter:drop-shadow(0 4px 3px #0009);transition:transform .65s cubic-bezier(.2,.8,.2,1)}.vault-wheel svg{display:block;width:100%;height:100%}
+.vault-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:0;padding:0;border:0;min-width:0}.vault-slot{display:flex;min-width:0;flex-direction:column;align-items:center;gap:6px}.vault-slot:before{content:"";width:8px;height:8px;border:1px solid #241824;border-radius:50%;background:#674653;box-shadow:inset 0 1px 2px #0008}.vault-slot-label{color:#d2c4d0;font:800 9px/1 system-ui,sans-serif;letter-spacing:.04em}
+.psychic-game .vault-number{display:grid;place-items:center;box-sizing:border-box;width:100%;min-width:0;height:42px;border:2px solid #90818f;border-radius:7px;background:#100f16;color:#ffbbd9;font:800 clamp(17px,5vw,24px)/1 monospace;font-variant-numeric:tabular-nums;box-shadow:inset 0 3px 8px #0009;transition:background .25s,border-color .25s}
+.vault-hint{min-height:1.5em;color:#c2afbe;font:800 8px/1.25 system-ui,sans-serif}.vault-slot.is-locked:before{background:#9aefb6;box-shadow:0 0 9px #80e6a6}.vault-slot.is-locked .vault-number{color:#b8f7cb;border-color:#89cda0;background:#11231c;animation:vault-click .35s ease-out}.vault-slot.is-locked .vault-hint{color:#b8f7cb}
+.vault-status{margin:14px 0 12px;min-height:3em;color:#e8d6e1;font:500 13px/1.45 system-ui,sans-serif}.vault-entry-label{display:block;margin:0 0 8px;color:#ffc7dc;font:800 12px/1.4 system-ui,sans-serif}.vault-entry{display:flex;gap:10px;align-items:stretch}
+.psychic-game .vault-guess{box-sizing:border-box;width:88px;min-width:72px;min-height:48px;border:2px solid #ffadd2;border-radius:10px;background:#100f16;color:#fff1df;text-align:center;font:800 25px/1 monospace;font-variant-numeric:tabular-nums;appearance:none}.psychic-game .vault-guess::placeholder{color:#796873}.psychic-game .vault-guess[aria-invalid=true]{border-color:#ff879e}.psychic-game .vault-guess:disabled{opacity:.5}
+.psychic-game .vault-check,.psychic-game .psychic-play{box-sizing:border-box;width:100%;min-height:48px;padding:12px;border:2px solid #241824;border-radius:10px;box-shadow:0 3px 0 #050308;background:#ff8fbd;color:#25131e;font:800 13px/1.3 system-ui,sans-serif;cursor:pointer;touch-action:manipulation}.psychic-game .vault-check:active,.psychic-game .psychic-play:active{transform:translateY(2px);box-shadow:0 1px 0 #050308}.psychic-game .vault-check:disabled{background:#b8f7cb;color:#143922;cursor:default;opacity:1}.psychic-game .vault-guess:focus-visible,.psychic-game .vault-check:focus-visible,.psychic-game .psychic-play:focus-visible{outline:3px solid #fff1df;outline-offset:3px}
+.psychic-game.is-unlocked .vault-door{transform:rotateY(-103deg);pointer-events:none;border-color:#7bb28c}.psychic-game.is-unlocked .vault-wheel{transform:rotate(540deg)}.psychic-game.is-unlocked .vault-record{transform:scale(1)}.psychic-game.is-unlocked .vault-status{color:#b8f7cb}.psychic-game.is-wrong .vault-stage{animation:vault-rattle .28s ease-in-out}
+.psychic-reward:empty{display:none}.psychic-reward .psychic-play{margin-top:12px}@keyframes vault-click{50%{transform:scale(1.12)}}@keyframes vault-rattle{25%,75%{transform:translateX(-3px)}50%{transform:translateX(3px)}}
+@media(max-width:360px){.psychic-game{padding:12px}.vault-door{padding-left:8px;padding-right:8px}.vault-slots{gap:4px}.vault-slot-label{font-size:8px}.vault-hint{font-size:7px}.vault-kicker{letter-spacing:.12em}}
+@media(prefers-reduced-motion:reduce){.vault-door,.vault-wheel,.vault-record,.vault-bolt,.psychic-game .vault-number{transition:none!important;animation:none!important}.psychic-game.is-wrong .vault-stage{animation:none}}
 #world > .flying-plane{z-index:5000!important}
 #world > .flying-bird{z-index:7000!important;will-change:transform}
 
@@ -1905,71 +1896,52 @@ renderSpots();renderPlaces();renderCharacters();renderMusic();renderPostcards();
   for(const f of body.querySelectorAll('iframe.video-screen')){const id=new URL(f.dataset.popupSrc||f.src).pathname.split('/').pop(),track=videoTracks[id];wireVideo(f);if(track&&!f.parentElement.querySelector('[data-track="'+track[0]+'"]')){const wrap=player(f.parentElement,...track);f.after(wrap);}}
  }
  function psychic(body){
-  body.replaceChildren(node('p','simple-description','Crack the vault. Guess five two-digit numbers to unlock a secret snippet. Check your guesses for higher or lower clues.'));
-  const game=node('section','psychic-game');
-  game.setAttribute('aria-label','Psychic Readings vault code game');
-  game.dataset.game='vault-code-v1';body.append(game);
+  body.replaceChildren(node('p','simple-description','Five secret numbers. Five mechanisms. Enter any two-digit code, in any order, to open the vault and hear a secret snippet.'));
+  const game=node('section','psychic-game');game.setAttribute('aria-label','Psychic Readings vault code game');game.dataset.game='vault-code-v2';body.append(game);
   game.append(node('p','vault-kicker','Psychic Readings · Secret Vault'));
   const form=node('form','vault-form');form.noValidate=true;
-  const door=node('div','vault-door'),plate=node('p','vault-plate','Vault sealed · 0 / 5 locks');
+  const stage=node('div','vault-stage'),chamber=node('div','vault-chamber');chamber.setAttribute('aria-hidden','true');
+  chamber.append(node('div','vault-record','★'),node('strong','','BRO CODE'),node('span','','SECRET SNIPPET · UNLOCKED'));
+  const door=node('div','vault-door'),plate=node('p','vault-plate','Vault sealed · 0 / 5 mechanisms');
   const wheel=node('div','vault-wheel');wheel.setAttribute('aria-hidden','true');
-  wheel.innerHTML='<svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="43" fill="#25232e" stroke="#aaa3b0" stroke-width="6"/><circle cx="50" cy="50" r="34" stroke="#625b6b" stroke-width="2"/><path d="M50 18v64M22 34l56 32M22 66l56-32" stroke="#c4bdca" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="14" fill="#77707f" stroke="#d7cddc" stroke-width="4"/><circle cx="50" cy="50" r="5" fill="#29242e"/></svg>';
-  const slots=node('fieldset','vault-slots');
-  const legend=node('legend','','Five two-digit code sets');
-  legend.style.cssText='position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap';
-  slots.append(legend);door.append(plate,wheel,slots);
-  const status=node('p','vault-status','Enter five numbers from 00 to 99. Each correct number locks into place.');
-  status.setAttribute('role','status');status.setAttribute('aria-live','polite');status.setAttribute('aria-atomic','true');
-  const check=node('button','vault-check','Check code');check.type='submit';
-  const reward=node('div','psychic-reward');
-  form.append(door,status,check,reward);game.append(form);
-  const answer=['20','15','51','53','02'],locked=answer.map(()=>false),inputs=[],hints=[],labels=[];
-  const unique='vault-'+Math.random().toString(36).slice(2);let done=false;
-  answer.forEach((_,index)=>{
-   const label=node('label','vault-slot'),caption=node('span','vault-slot-label','SET '+(index+1));
-   const input=node('input','vault-number');input.type='text';input.inputMode='numeric';input.maxLength=2;input.pattern='[0-9]{2}';input.autocomplete='off';input.spellcheck=false;input.placeholder='--';
-   input.setAttribute('aria-label','Code set '+(index+1));
-   const hint=node('span','vault-hint','00–99');hint.id=unique+'-'+index;input.setAttribute('aria-describedby',hint.id);
-   label.append(caption,input,hint);slots.append(label);inputs.push(input);hints.push(hint);labels.push(label);
-   input.addEventListener('input',()=>{
-    input.value=input.value.replace(/[^0-9]/g,'').slice(0,2);
-    label.classList.remove('is-wrong');input.removeAttribute('aria-invalid');hint.textContent='00–99';
-    if(input.value.length===2){const next=inputs.find((entry,n)=>n>index&&!locked[n]);if(next)next.focus({preventScroll:true});}
-   });
-   input.addEventListener('blur',()=>{if(/^[0-9]$/.test(input.value))input.value=input.value.padStart(2,'0');});
-   input.addEventListener('keydown',event=>{if(event.key!=='Escape')event.stopPropagation();});
-   input.addEventListener('paste',event=>{
-    const text=event.clipboardData?.getData('text')||'',digits=text.replace(/[^0-9]/g,'');
-    if(digits.length!==10)return;
-    event.preventDefault();
-    inputs.forEach((entry,n)=>{if(!locked[n]){entry.value=digits.slice(n*2,n*2+2);labels[n].classList.remove('is-wrong');entry.removeAttribute('aria-invalid');hints[n].textContent='00–99';}});
-    check.focus({preventScroll:true});
-   });
-  });
+  wheel.innerHTML='<svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="43" fill="#25232e" stroke="#aaa3b0" stroke-width="6"/><circle cx="50" cy="50" r="34" stroke="#625b6b" stroke-width="2"/><path d="M50 18v64M22 34l56 32M22 66l56-32" stroke="#c4bdca" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="14" fill="#ff8fbd" stroke="#241824" stroke-width="4"/><circle cx="50" cy="50" r="5" fill="#29242e"/></svg>';
+  const slots=node('div','vault-slots');slots.setAttribute('role','group');slots.setAttribute('aria-label','Five vault mechanisms');
+  const mechanisms=[],bolts=[];
+  for(let index=0;index<5;index++){
+   const slot=node('div','vault-slot');slot.setAttribute('aria-label','Mechanism '+(index+1)+' sealed');
+   const value=node('span','vault-number','--'),hint=node('span','vault-hint','SEALED');
+   slot.append(node('span','vault-slot-label','LOCK '+(index+1)),value,hint);slots.append(slot);mechanisms.push({slot,value,hint});
+   const bolt=node('i','vault-bolt');bolt.style.top=(14+index*16)+'%';bolt.setAttribute('aria-hidden','true');bolts.push(bolt);door.append(bolt);
+  }
+  door.append(plate,wheel,slots);stage.append(chamber,door);
+  const status=node('p','vault-status','Discover five different codes from 00 to 99. Each correct code opens one mechanism.');
+  status.id='vault-status-'+Math.random().toString(36).slice(2);status.setAttribute('role','status');status.setAttribute('aria-live','polite');status.setAttribute('aria-atomic','true');
+  const label=node('label','vault-entry-label','Enter a two-digit code');
+  const entry=node('div','vault-entry'),input=node('input','vault-guess');
+  input.id=status.id+'-input';label.htmlFor=input.id;input.type='text';input.inputMode='numeric';input.maxLength=2;input.pattern='[0-9]{2}';input.autocomplete='off';input.spellcheck=false;input.placeholder='00';input.setAttribute('aria-describedby',status.id);
+  const check=node('button','vault-check','Try code');check.type='submit';entry.append(input,check);
+  const reward=node('div','psychic-reward');form.append(stage,status,label,entry,reward);game.append(form);
+  const answer=new Set(['20','15','51','53','02']),found=new Set();let done=false;
+  input.addEventListener('input',()=>{input.value=input.value.replace(/[^0-9]/g,'').slice(0,2);input.removeAttribute('aria-invalid');game.classList.remove('is-wrong');});
+  input.addEventListener('keydown',event=>{if(event.key!=='Escape')event.stopPropagation();});
   form.addEventListener('submit',event=>{
    event.preventDefault();if(done)return;
-   const incomplete=inputs.find((input,index)=>!locked[index]&&!/^[0-9]{1,2}$/.test(input.value));
-   if(incomplete){status.textContent='Enter a number from 00 to 99 in each unlocked set.';incomplete.focus({preventScroll:true});return;}
-   inputs.forEach((input,index)=>{
-    if(locked[index])return;
-    input.value=input.value.padStart(2,'0');
-    if(input.value===answer[index]){
-     locked[index]=true;input.readOnly=true;input.tabIndex=-1;labels[index].classList.add('is-locked');labels[index].classList.remove('is-wrong');input.removeAttribute('aria-invalid');hints[index].textContent='Locked ✓';
-    }else{
-     labels[index].classList.add('is-wrong');input.setAttribute('aria-invalid','true');hints[index].textContent=Number(input.value)<Number(answer[index])?'Higher ↑':'Lower ↓';
-    }
-   });
-   const count=locked.filter(Boolean).length;plate.textContent=(count===5?'Vault open':'Vault sealed')+' · '+count+' / 5 locks';
-   if(count===5){
-    done=true;game.classList.add('is-unlocked');check.textContent='Vault unlocked';check.disabled=true;
-    status.textContent='All five locks are open. BRO CODE unlocked. You heard it here first.';
-    const again=node('button','psychic-play','Play the 30-second snippet again');again.type='button';
-    again.onclick=()=>preview(body,['psychic-reward',0,'BRO CODE']);reward.append(again);
-    preview(body,['psychic-reward',0,'BRO CODE']);
-   }else{
-    status.textContent=count+' of 5 locks open. Follow the higher or lower clues and check again.';
-    inputs.find((input,index)=>!locked[index])?.focus({preventScroll:true});
+   const guess=input.value;
+   if(!/^[0-9]{2}$/.test(guess)){status.textContent='Use exactly two digits from 00 to 99. Keep the zero in codes such as 02.';input.setAttribute('aria-invalid','true');input.focus({preventScroll:true});return;}
+   if(found.has(guess)){status.textContent=guess+' is already discovered. Find a different code · '+found.size+' / 5 mechanisms open.';input.select();return;}
+   if(!answer.has(guess)){
+    status.textContent=guess+' did not open a mechanism. Try a different two-digit code · '+found.size+' / 5 open.';input.setAttribute('aria-invalid','true');game.classList.remove('is-wrong');void game.offsetWidth;game.classList.add('is-wrong');input.select();return;
    }
+   found.add(guess);const count=found.size,mechanism=mechanisms[count-1];
+   mechanism.value.textContent=guess;mechanism.hint.textContent='OPEN ✓';mechanism.slot.classList.add('is-locked');mechanism.slot.setAttribute('aria-label','Mechanism '+count+' open · code '+guess);bolts[count-1].classList.add('is-retracted');
+   input.removeAttribute('aria-invalid');game.classList.remove('is-wrong');input.value='';
+   plate.textContent=(count===5?'Vault open':'Vault sealed')+' · '+count+' / 5 mechanisms';
+   if(count===5){
+    done=true;game.classList.add('is-unlocked');input.disabled=true;check.textContent='Vault unlocked';check.disabled=true;
+    status.textContent='All five mechanisms are open. BRO CODE unlocked. You heard it here first.';
+    const again=node('button','psychic-play','Play the 30-second snippet again');again.type='button';again.onclick=()=>preview(body,['psychic-reward',0,'BRO CODE']);reward.append(again);
+    preview(body,['psychic-reward',0,'BRO CODE']);again.focus({preventScroll:true});
+   }else{status.textContent=guess+' unlocked mechanism '+count+'! '+count+' / 5 open. Enter another code in any order.';input.focus({preventScroll:true});}
   });
  }
  function darkEmbed(frame){
