@@ -43,6 +43,15 @@ def add_scene(html, p):
               f'height:{p["height"]}px;z-index:{p["z"]};overflow:hidden"><img src="{p["asset"]}" '
               'alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;max-width:none"></div>')
     html = html.replace(anchor, sprite+anchor, 1)
+    # Recover the original therapy artwork if a captured preview omitted its root.
+    if 'data-landmark="therapy-office"' not in html:
+        therapy = ('<div class="scene-sprite landmark-art" data-scenery="landmark" '
+                   'data-landmark="therapy-office" data-source-name="" data-layer="therapy-office" '
+                   'style="left:812.0px;top:450.5px;width:101.0px;height:78.5px;z-index:41;overflow:hidden">'
+                   '<img src="/kloset/therapy.webp" alt="" draggable="false" '
+                   'style="position:absolute;max-width:none;width:115.67656765676568%;'
+                   'height:119.61620469083157%;left:-8.16831683168317%;top:-9.061833688699359%;"></div>')
+        html = html.replace(anchor, therapy+anchor, 1)
     definitions = json.loads((HERE/'landmarks.json').read_text())
     for id, definition in definitions.items():
         pattern = r'(<div[^>]*data-landmark="'+re.escape(id)+r'"[^>]*>)<img[^>]*></div>'
@@ -53,6 +62,7 @@ def add_scene(html, p):
         geometry = f'left:{box["x"]}px;top:{box["y"]}px;width:{box["w"]}px;height:{box["h"]}px;'
         root, count = re.subn(r'left:[^;]+;top:[^;]+;width:[^;]+;height:[^;]+;',geometry,match.group(1),count=1)
         assert count == 1
+        root = re.sub(r'z-index:[^;]+;',f'z-index:{definition["placement"]["z"]};',root,count=1)
         image = (f'<img src="{definition["placement"]["asset"]}" alt="" draggable="false" '
                  'style="position:absolute;inset:0;width:100%;height:100%;max-width:none"></div>')
         html = html[:match.start()]+root+image+html[match.end():]
@@ -74,6 +84,6 @@ def install(html, output):
     target = output/'kloset'
     target.mkdir(exist_ok=True)
     for file in HERE.iterdir():
-        if file.suffix in {'.webp', '.jpg', '.json', '.css', '.js'} and file.name not in {'placement.json','landmarks.json'}:
+        if file.suffix in {'.webp', '.jpg', '.png', '.gif', '.json', '.css', '.js'} and file.name not in {'placement.json','landmarks.json'}:
             shutil.copyfile(file, target/file.name)
     return html.replace('</head>', '<script defer src="/kloset/archive.js"></script></head>', 1)
