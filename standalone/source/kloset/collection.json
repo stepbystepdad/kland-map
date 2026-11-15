@@ -2,8 +2,8 @@
   {
     "id": "bullet-for-your-valentine-cover-art",
     "name": "Bubblegum K",
-    "sprite": "bullet-for-your-valentine-cover-art-k.webp?v=feacbb4a7574",
-    "thumbnail": "bullet-for-your-valentine-cover-art-k-thumb.webp?v=40f95b8a6d6c",
+    "sprite": "bullet-for-your-valentine-cover-art-k.webp?v=0a35a5b3c274",
+    "thumbnail": "bullet-for-your-valentine-cover-art-k-thumb.webp?v=94793937ddd6",
     "era": "BULLET FOR YOUR VALENTINE",
     "description": "A silver-white tank, black trousers and a pink bubble that steals the whole shot.",
     "photos": [
@@ -81,8 +81,8 @@
   {
     "id": "bullet-for-your-valentine-rockstar",
     "name": "Rock Star K",
-    "sprite": "bullet-for-your-valentine-rockstar-k.webp?v=2bee5f6ecd33",
-    "thumbnail": "bullet-for-your-valentine-rockstar-k-thumb.webp?v=9e9a439979a1",
+    "sprite": "bullet-for-your-valentine-rockstar-k.webp?v=f907fed125c6",
+    "thumbnail": "bullet-for-your-valentine-rockstar-k-thumb.webp?v=53e462a46e21",
     "era": "BULLET FOR YOUR VALENTINE",
     "description": "A red-and-black mesh tank, a star at the chest and skull cuffs at the wrists.",
     "photos": [],
@@ -100,8 +100,8 @@
   {
     "id": "bad-omen-mob-boss",
     "name": "Mob Boss K",
-    "sprite": "bad-omen-mob-boss-k.webp?v=f2e44f1d1abf",
-    "thumbnail": "bad-omen-mob-boss-k-thumb.webp?v=918bebb9f74a",
+    "sprite": "bad-omen-mob-boss-k.webp?v=2b05c42eb1a4",
+    "thumbnail": "bad-omen-mob-boss-k-thumb.webp?v=7f9c0e7aba7b",
     "era": "BAD OMEN",
     "description": "Copper hair and a flame-toned patterned shirt tucked into burgundy trousers.",
     "photos": [],
@@ -160,8 +160,8 @@
   {
     "id": "fool-s-gold-emo",
     "name": "Emo K",
-    "sprite": "fool-s-gold-emo-k.webp?v=284dd65bbd7b",
-    "thumbnail": "fool-s-gold-emo-k-thumb.webp?v=15d70e086056",
+    "sprite": "fool-s-gold-emo-k.webp?v=2aff6240b8e3",
+    "thumbnail": "fool-s-gold-emo-k-thumb.webp?v=54e82c976c80",
     "era": "FOOL'S GOLD",
     "description": "A white collared tank, black tie and wide-leg trousers with an eyelet belt.",
     "photos": [
@@ -211,8 +211,8 @@
   {
     "id": "i-think-i-need-therapy-strawberry-jam",
     "name": "\"Strawberry Jam\" K",
-    "sprite": "i-think-i-need-therapy-strawberry-jam-k.webp?v=dfa7855ab40a",
-    "thumbnail": "i-think-i-need-therapy-strawberry-jam-k-thumb.webp?v=0fd133687410",
+    "sprite": "i-think-i-need-therapy-strawberry-jam-k.webp?v=4ae1d5caf73d",
+    "thumbnail": "i-think-i-need-therapy-strawberry-jam-k-thumb.webp?v=249b64d26cbb",
     "era": "I THINK I NEED THERAPY!",
     "description": "Champagne mesh, silver trousers and a generous splatter of strawberry red.",
     "photos": [
@@ -276,8 +276,8 @@
   {
     "id": "step-by-step-dad-cover-art",
     "name": "Australia's Next Top Bottom K",
-    "sprite": "step-by-step-dad-cover-art-k.webp?v=257e5b98ea4b",
-    "thumbnail": "step-by-step-dad-cover-art-k-thumb.webp?v=2ce2d27e30c8",
+    "sprite": "step-by-step-dad-cover-art-k.webp?v=02ee1e477d9d",
+    "thumbnail": "step-by-step-dad-cover-art-k-thumb.webp?v=b842cd287d25",
     "era": "STEP BY STEP (DAD)",
     "description": "The navy cropped tee puts the song title front and centre above wide charcoal trousers.",
     "photos": [
@@ -328,10 +328,14 @@
       }
     ],
     "videos": [],
-    "links": [],
+    "links": [
+      {
+        "label": "Preorder the IT BOY Shirt",
+        "url": "https://www.kevinsilvester.com/store/p/it-boy-shirt"
+      }
+    ],
     "fact": null,
-    "order": 16,
-    "locked": true
+    "order": 16
   },
   {
     "id": "bro-code-cover-art",
