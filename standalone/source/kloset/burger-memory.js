@@ -15,6 +15,7 @@
     #nb-game .nb-loss-cover img {display:block;width:100%;height:100%;object-fit:contain}
     #nb-game .nb-loss-cover span {position:absolute;left:50%;bottom:10px;transform:translateX(-50%);min-height:44px;display:flex;align-items:center;justify-content:center;white-space:nowrap;border:2px solid #241824;border-radius:10px;background:#f32982;padding:10px 16px;font-weight:800;font-size:14px;box-shadow:0 3px #a30f57}
     #nb-game .nb-loss-player iframe {display:block;width:100%;height:100%;border:0}
+    #nb-game .nb-loss-external {display:inline-flex;align-items:center;min-height:44px;margin-top:4px;color:#701d35;font-size:13px;font-weight:800}
     @media(max-width:600px){#nb-game .nb-card.nb-has-loss-video{padding:14px 12px}#nb-game .nb-loss-memory{margin:10px 0 12px}}
   `;
   document.head.append(css);
@@ -42,7 +43,8 @@
       iframe.src='https://www.youtube-nocookie.com/embed/DPjcQLbagwY?autoplay=1&playsinline=1&rel=0';
       iframe.onload=()=>iframe.focus();player.replaceChildren(iframe);
     };
-    section.append(heading,player);card.insertBefore(section,card.querySelector('.nb-primary'));
+    const external=document.createElement('a');external.className='nb-loss-external';external.href='https://www.youtube.com/watch?v=DPjcQLbagwY';external.target='_blank';external.rel='noopener';external.textContent='Watch on YouTube ↗';
+    section.append(heading,player,external);card.insertBefore(section,card.querySelector('.nb-primary'));
   }
   function attach() {
     const game=document.getElementById('nb-game');
