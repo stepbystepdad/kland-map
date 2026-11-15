@@ -16,6 +16,19 @@
     return b;
   };
 
+  function centerRack(animate = false) {
+    const rack = $('.kl-rack');
+    const active = rack.querySelector('[aria-current="true"]');
+    if (!active || !rack.clientWidth) return;
+    rack.style.paddingInline = Math.max(0, (rack.clientWidth-active.offsetWidth)/2)+'px';
+    const left = rack.scrollLeft + active.getBoundingClientRect().left -
+      rack.getBoundingClientRect().left - (rack.clientWidth-active.offsetWidth)/2;
+    rack.scrollTo({
+      left,
+      behavior:animate && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto'
+    });
+  }
+
   function create() {
     const css = document.createElement('link');
     css.rel = 'stylesheet'; css.href = root + 'archive.css';
@@ -65,6 +78,7 @@
         <span class="kl-sr" aria-live="polite" aria-atomic="true"></span>
       </div>`;
     document.body.append(dialog);
+    new ResizeObserver(() => centerRack()).observe($('.kl-rack'), {box:'border-box'});
     $('.kl-close').onclick = () => dialog.close();
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
     dialog.addEventListener('close', () => {
@@ -165,8 +179,7 @@
     renderMemory(look);
     const rack=$('.kl-rack');
     [...rack.children].forEach((b,i)=>b.setAttribute('aria-current',String(i===index)));
-    const active=rack.children[index];
-    rack.scrollLeft += active.getBoundingClientRect().left-rack.getBoundingClientRect().left-(rack.clientWidth-active.offsetWidth)/2;
+    centerRack(direction !== 0);
     $('.kl-sr').textContent='Look '+(index+1)+' of '+looks.length+', '+look.name+', '+look.era+(locked?', Coming soon':'');
     if (locked) return;
     sprite.decode().catch(()=>{}).then(()=>{
