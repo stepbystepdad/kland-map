@@ -16,17 +16,25 @@
     return b;
   };
 
-  function centerRack(animate = false) {
-    const rack = $('.kl-rack');
-    const active = rack.querySelector('[aria-current="true"]');
-    if (!active || !rack.clientWidth) return;
-    rack.style.paddingInline = Math.max(0, (rack.clientWidth-active.offsetWidth)/2)+'px';
+  function centerRack(animate = false, steps = 0) {
+    const rack = $('.kl-rack'), track = $('.kl-rack-track');
+    if (!looks?.length || !rack.clientWidth) return;
+    const active = track.children[looks.length+index];
+    const before = track.getBoundingClientRect().left;
+    track.getAnimations().forEach(animation => animation.cancel());
+    const drift = before-track.getBoundingClientRect().left;
+    const step = active.offsetWidth + parseFloat(getComputedStyle(track).columnGap);
     const left = rack.scrollLeft + active.getBoundingClientRect().left -
       rack.getBoundingClientRect().left - (rack.clientWidth-active.offsetWidth)/2;
-    rack.scrollTo({
-      left,
-      behavior:animate && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto'
-    });
+    rack.scrollTo({left, behavior:'auto'});
+    if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const limit = looks.length*step/2;
+      const distance = Math.max(-limit, Math.min(limit, drift+steps*step));
+      track.animate([
+        {transform:'translateX('+distance+'px)'},
+        {transform:'translateX(0)'}
+      ], {duration:340, easing:'cubic-bezier(.22,.61,.36,1)'});
+    }
   }
 
   function create() {
@@ -72,7 +80,7 @@
             </section>
           </div>
           <div class="kl-drawer">
-            <nav class="kl-rack" aria-label="Jump to an outfit"></nav>
+            <nav class="kl-rack" aria-label="Jump to an outfit"><div class="kl-rack-track"></div></nav>
           </div>
         </div>
         <span class="kl-sr" aria-live="polite" aria-atomic="true"></span>
@@ -94,23 +102,33 @@
     });
     $('.kl-prev').onclick = () => go(index-1, -1);
     $('.kl-next').onclick = () => go(index+1, 1);
-    let start;
     const stage = $('.kl-stage');
-    stage.addEventListener('pointerdown', e => {
-      if (!e.isPrimary || e.button !== 0 || e.target.closest('button')) return;
-      start = {x:e.clientX, y:e.clientY, id:e.pointerId};
-      stage.setPointerCapture(e.pointerId);
-    });
-    stage.addEventListener('pointercancel', () => { start = null; });
-    stage.addEventListener('pointerup', e => {
-      if (!start || e.pointerId !== start.id) return;
-      const dx = e.clientX-start.x, dy = e.clientY-start.y;
-      start = null;
-      if (Math.abs(dx) > 38 && Math.abs(dx) > 1.35*Math.abs(dy)) {
-        const direction = dx < 0 ? 1 : -1;
-        go(index+direction, direction);
-      }
-    });
+    for (const surface of [stage, $('.kl-rack')]) {
+      let start = null, swiped = false;
+      surface.addEventListener('pointerdown', e => {
+        if (!e.isPrimary || e.button !== 0 || (surface === stage && e.target.closest('button'))) return;
+        start = {x:e.clientX, y:e.clientY, id:e.pointerId};
+        swiped = false;
+        if (surface === stage) surface.setPointerCapture(e.pointerId);
+      });
+      surface.addEventListener('pointercancel', () => { start = null; });
+      surface.addEventListener('pointerup', e => {
+        if (!start || e.pointerId !== start.id) return;
+        const dx = e.clientX-start.x, dy = e.clientY-start.y;
+        start = null;
+        if (Math.abs(dx) > 38 && Math.abs(dx) > 1.35*Math.abs(dy)) {
+          swiped = true;
+          const direction = dx < 0 ? 1 : -1;
+          go(index+direction, direction);
+        }
+      });
+      surface.addEventListener('click', e => {
+        if (!swiped) return;
+        swiped = false;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }, true);
+    }
   }
 
   function renderMemory(look) {
@@ -149,6 +167,7 @@
 
   function go(n, direction=0) {
     if (!looks?.length) return;
+    const steps = n-index;
     index=wrap(n,looks.length); memory=0;
     const look=looks[index], number=two(index+1), token=++renderToken;
     const locked = look.locked === true;
@@ -177,9 +196,9 @@
       sprite.src=url(look.sprite);
     }
     renderMemory(look);
-    const rack=$('.kl-rack');
-    [...rack.children].forEach((b,i)=>b.setAttribute('aria-current',String(i===index)));
-    centerRack(direction !== 0);
+    const track=$('.kl-rack-track');
+    [...track.children].forEach((b,i)=>b.setAttribute('aria-current',String(i===looks.length+index)));
+    centerRack(direction !== 0, steps);
     $('.kl-sr').textContent='Look '+(index+1)+' of '+looks.length+', '+look.name+', '+look.era+(locked?', Coming soon':'');
     if (locked) return;
     sprite.decode().catch(()=>{}).then(()=>{
@@ -218,21 +237,33 @@
       }).then(data=>{
         if (!Array.isArray(data) || !data.length) throw new Error('wardrobe');
         looks=data.sort((a,b)=>a.order-b.order);
-        for (const [i,look] of looks.entries()) {
-          const label = look.name+(look.locked?' — Coming soon':'');
-          const b=button('Show '+label,'',()=>go(i,Math.sign(i-index)));
-          b.title=label;
-          if (look.locked) {
-            const lock = document.createElement('span');
-            lock.className = 'kl-lock-icon';
-            lock.setAttribute('aria-hidden', 'true');
-            b.classList.add('kl-locked-tab');
-            b.append(lock);
-          } else {
-            const image=new Image();image.alt='';image.loading='lazy';image.src=url(look.thumbnail);
-            b.append(image);
+        for (let copy=0; copy<3; copy++) {
+          for (const [i,look] of looks.entries()) {
+            const position = copy*looks.length+i;
+            const label = look.name+(look.locked?' — Coming soon':'');
+            const b=button('Show '+label,'',()=>{
+              const steps = position-(looks.length+index);
+              go(index+steps, Math.sign(steps));
+            });
+            b.title=label;
+            b.dataset.outfit=String(i);
+            if (copy !== 1) {
+              b.setAttribute('aria-hidden','true');
+              b.tabIndex=-1;
+              b.addEventListener('pointerdown', e => e.preventDefault());
+            }
+            if (look.locked) {
+              const lock = document.createElement('span');
+              lock.className = 'kl-lock-icon';
+              lock.setAttribute('aria-hidden', 'true');
+              b.classList.add('kl-locked-tab');
+              b.append(lock);
+            } else {
+              const image=new Image();image.alt='';image.draggable=false;image.loading='lazy';image.src=url(look.thumbnail);
+              b.append(image);
+            }
+            $('.kl-rack-track').append(b);
           }
-          $('.kl-rack').append(b);
         }
       }).finally(()=>{pending=null;});
       try { await pending; } catch {
