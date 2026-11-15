@@ -141,6 +141,7 @@
         !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       outgoing = sprite.cloneNode();
       outgoing.className = 'kl-sprite-outgoing';
+      outgoing.hidden = false;
       outgoing.alt = '';
       outgoing.setAttribute('aria-hidden', 'true');
       sprite.after(outgoing);
