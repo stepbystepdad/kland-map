@@ -62,6 +62,10 @@
     $('.kl-close').onclick = () => dialog.close();
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
     dialog.addEventListener('close', () => {
+      ++renderToken;
+      dialog.querySelectorAll('.kl-sprite-outgoing').forEach(image => image.remove());
+      $('.kl-sprite').getAnimations().forEach(animation => animation.cancel());
+      $('.kl-sprite').hidden = false;
       window.kuSetPlaceHash?.('');
       if (typeof selected !== 'undefined' && selected === place) {
         selected = null; window.KLandSelectPlace?.('');
@@ -129,14 +133,21 @@
     const look=looks[index], number=two(index+1), token=++renderToken;
     $('.kl-name').textContent=look.name; $('.kl-project').textContent=look.era;
     $('.kl-count').textContent='LOOK '+number+' / '+two(looks.length);
-    const sprite=$('.kl-sprite');
+    const sprite = $('.kl-sprite');
+    sprite.getAnimations().forEach(animation => animation.cancel());
+    dialog.querySelectorAll('.kl-sprite-outgoing').forEach(image => image.remove());
+    let outgoing = null;
+    if (direction && sprite.complete && sprite.naturalWidth &&
+        !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      outgoing = sprite.cloneNode();
+      outgoing.className = 'kl-sprite-outgoing';
+      outgoing.alt = '';
+      outgoing.setAttribute('aria-hidden', 'true');
+      sprite.after(outgoing);
+    }
+    sprite.hidden = !!outgoing;
     sprite.alt=look.description ? look.name+'. '+look.description : look.name+' outfit';
     sprite.src=url(look.sprite);
-    if (direction && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const card=$('.kl-card');
-      card.getAnimations().forEach(a=>a.cancel());
-      card.animate([{opacity:.7,transform:'translateX('+direction*15+'px) rotate('+direction*1.7+'deg)'},{opacity:1,transform:'none'}],{duration:210,easing:'ease-out'});
-    }
     renderMemory(look);
     const rack=$('.kl-rack');
     [...rack.children].forEach((b,i)=>b.setAttribute('aria-current',String(i===index)));
@@ -144,7 +155,23 @@
     rack.scrollLeft += active.getBoundingClientRect().left-rack.getBoundingClientRect().left-(rack.clientWidth-active.offsetWidth)/2;
     $('.kl-sr').textContent='Look '+(index+1)+' of '+looks.length+', '+look.name+', '+look.era;
     sprite.decode().catch(()=>{}).then(()=>{
-      if (token !== renderToken) return;
+      if (token !== renderToken) {
+        outgoing?.remove();
+        return;
+      }
+      sprite.hidden = false;
+      if (outgoing) {
+        const timing = {duration:340, easing:'cubic-bezier(.22,.61,.36,1)'};
+        const exit = outgoing.animate([
+          {transform:'translateX(0)', opacity:1},
+          {transform:'translateX('+(-direction*115)+'%)', opacity:.5}
+        ], timing);
+        exit.finished.then(() => outgoing.remove(), () => outgoing.remove());
+        sprite.animate([
+          {transform:'translateX('+(direction*115)+'%)', opacity:.65},
+          {transform:'translateX(0)', opacity:1}
+        ], timing);
+      }
       for (const off of [-1,1]) {const img=new Image(); img.src=url(looks[wrap(index+off,looks.length)].sprite);}
     });
   }
