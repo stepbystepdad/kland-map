@@ -25,31 +25,36 @@
     dialog.setAttribute('aria-labelledby', 'kl-title');
     dialog.innerHTML = `
       <div class="kl-shell">
-        <header class="kl-header"><div class="kl-wordmark"><span class="kl-star" aria-hidden="true">★</span>
-          <h1 id="kl-title">The Kloset</h1></div><span class="kl-tag">Fashion archive</span>
-          <button class="kl-close" aria-label="Close The Kloset">×</button></header>
+        <header class="kl-header">
+          <span class="kl-count"></span>
+          <div class="kl-cartouche"><h1 id="kl-title">The Kloset</h1></div>
+          <button class="kl-close" aria-label="Close The Kloset">×</button>
+        </header>
         <div class="kl-status" role="status">Opening the wardrobe…</div>
         <div class="kl-body" hidden>
           <div class="kl-spread">
             <section class="kl-stage" aria-label="Collectible outfit card">
-              <div class="kl-card"><div class="kl-cardline"><span>K LAND ★</span><span class="kl-id"></span></div>
-                <div class="kl-window"><span aria-hidden="true" class="kl-decal kl-d1">✦</span>
-                  <span aria-hidden="true" class="kl-decal kl-d2">♡</span><span aria-hidden="true" class="kl-decal kl-d3">✧</span>
-                  <img class="kl-sprite" alt="" draggable="false"></div>
-                <div class="kl-nameplate"><span class="kl-project"></span><h2 class="kl-name"></h2></div></div>
-              <button class="kl-arrow kl-prev" aria-label="Previous outfit">‹</button>
-              <button class="kl-arrow kl-next" aria-label="Next outfit">›</button>
+              <div class="kl-rail" aria-hidden="true"></div>
+              <div class="kl-garments" aria-hidden="true">
+                <span class="kl-hanging kl-left"><i></i></span>
+                <span class="kl-hanging kl-right"><i></i></span>
+              </div>
+              <div class="kl-card">
+                <div class="kl-window"><img class="kl-sprite" alt="" draggable="false"></div>
+                <div class="kl-nameplate"><span class="kl-project"></span><h2 class="kl-name"></h2></div>
+              </div>
             </section>
-            <section class="kl-notes" aria-label="Outfit details">
-              <div class="kl-count"></div><h3>Wardrobe notes</h3><p class="kl-description"></p>
-              <p class="kl-fact" hidden></p>
-              <section class="kl-memories" aria-label="Spotted in" hidden>
-                <div class="kl-memoryhead"><h3>Spotted in…</h3><div class="kl-memnav"></div></div>
-                <figure class="kl-polaroid"><div class="kl-photo"></div><figcaption></figcaption></figure>
-              </section><div class="kl-links"></div>
+            <section class="kl-door" aria-label="Spotted in" hidden>
+              <div class="kl-memoryhead"><h3>Spotted in…</h3><div class="kl-memnav"></div></div>
+              <figure class="kl-polaroid"><div class="kl-photo"></div><figcaption></figcaption></figure>
+              <div class="kl-links"></div>
             </section>
           </div>
-          <nav class="kl-rack" aria-label="Jump to an outfit"></nav>
+          <div class="kl-drawer">
+            <button class="kl-arrow kl-prev" aria-label="Previous outfit">‹</button>
+            <nav class="kl-rack" aria-label="Jump to an outfit"></nav>
+            <button class="kl-arrow kl-next" aria-label="Next outfit">›</button>
+          </div>
         </div>
         <span class="kl-sr" aria-live="polite" aria-atomic="true"></span>
       </div>`;
@@ -86,8 +91,14 @@
 
   function renderMemory(look) {
     const entries = [...(look.photos || []), ...(look.videos || [])].filter(m => m.image || m.url);
-    const group = $('.kl-memories'), pager = $('.kl-memnav');
-    pager.replaceChildren(); $('.kl-photo').replaceChildren(); group.hidden = !entries.length;
+    const door = $('.kl-door'), pager = $('.kl-memnav');
+    const links = (look.links || []).filter(item => item.url);
+    door.hidden = !entries.length && !links.length;
+    $('.kl-spread').classList.toggle('kl-solo', door.hidden);
+    $('.kl-memoryhead').hidden = !entries.length;
+    $('.kl-polaroid').hidden = !entries.length;
+    pager.replaceChildren();
+    $('.kl-photo').replaceChildren();
     if (entries.length) {
       const m = entries[memory];
       if (entries.length > 1) {
@@ -106,8 +117,7 @@
       $('.kl-photo').append(el); $('.kl-polaroid figcaption').textContent=m.label;
     }
     $('.kl-links').replaceChildren();
-    for (const item of look.links || []) {
-      if (!item.url) continue;
+    for (const item of links) {
       const link=document.createElement('a');link.href=item.url;link.textContent=item.label+' ↗';
       link.target='_blank';link.rel='noopener noreferrer';$('.kl-links').append(link);
     }
@@ -117,12 +127,11 @@
     if (!looks?.length) return;
     index=wrap(n,looks.length); memory=0;
     const look=looks[index], number=two(index+1), token=++renderToken;
-    $('.kl-id').textContent='K / '+two(look.order);
     $('.kl-name').textContent=look.name; $('.kl-project').textContent=look.era;
-    $('.kl-description').textContent=look.description;
-    $('.kl-fact').hidden=!look.fact; $('.kl-fact').textContent=look.fact||'';
     $('.kl-count').textContent='LOOK '+number+' / '+two(looks.length);
-    const sprite=$('.kl-sprite');sprite.alt=look.name+' outfit';sprite.src=url(look.sprite);
+    const sprite=$('.kl-sprite');
+    sprite.alt=look.description ? look.name+'. '+look.description : look.name+' outfit';
+    sprite.src=url(look.sprite);
     if (direction && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const card=$('.kl-card');
       card.getAnimations().forEach(a=>a.cancel());
