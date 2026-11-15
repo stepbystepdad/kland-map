@@ -3,19 +3,20 @@
   'use strict';
   const css = document.createElement('style');
   css.textContent = `
-    #nb-game .nb-overlay.nb-with-memory {overflow:auto;padding:12px}
-    #nb-game .nb-card.nb-has-loss-video {max-width:500px;max-height:100%;overflow:auto;padding:18px 20px}
+    #nb-game .nb-overlay.nb-with-memory {overflow:hidden;padding:12px;box-sizing:border-box}
+    #nb-game .nb-card.nb-has-loss-video {box-sizing:border-box;max-width:460px;max-height:100%;overflow:auto;overscroll-behavior:contain;padding:18px 20px;scrollbar-gutter:stable}
     #nb-game .nb-card.nb-has-loss-video h2 {margin:6px 0 8px;font-size:clamp(23px,3vw,31px)}
     #nb-game .nb-card.nb-has-loss-video p {margin-bottom:10px}
-    #nb-game .nb-card.nb-has-loss-video > .nb-primary {position:sticky;bottom:0;z-index:2}
-    #nb-game .nb-loss-memory {margin:12px 0 16px}
-    #nb-game .nb-loss-memory h3 {font-size:13px;letter-spacing:.04em;margin:0 0 8px;color:#701d35}
-    #nb-game .nb-loss-player {aspect-ratio:16/9;width:100%;background:#241824;border:2px solid #241824;border-radius:12px;overflow:hidden}
+    #nb-game .nb-card.nb-has-loss-video > .nb-primary {position:static;display:block;margin:0 auto 5px;min-height:44px}
+    #nb-game .nb-loss-memory {display:flex;flex-direction:column;align-items:center;gap:10px;margin:12px 0 14px}
+    #nb-game .nb-loss-memory h3 {font-size:13px;letter-spacing:.04em;margin:0;color:#701d35}
+    #nb-game .nb-loss-memory .nb-loss-copy {max-width:43ch;margin:0;font-size:13px;line-height:1.45}
+    #nb-game .nb-loss-player {box-sizing:border-box;flex:none;aspect-ratio:16/9;width:100%;background:#241824;border:2px solid #241824;border-radius:12px;overflow:hidden}
     #nb-game .nb-loss-cover {position:relative;display:block;width:100%;height:100%;padding:0;border:0;background:#241824;color:#fff8ee}
     #nb-game .nb-loss-cover img {display:block;width:100%;height:100%;object-fit:contain}
-    #nb-game .nb-loss-cover span {position:absolute;left:50%;bottom:10px;transform:translateX(-50%);min-height:44px;display:flex;align-items:center;justify-content:center;white-space:nowrap;border:2px solid #241824;border-radius:10px;background:#f32982;padding:10px 16px;font-weight:800;font-size:14px;box-shadow:0 3px #a30f57}
+    #nb-game .nb-loss-cover span {box-sizing:border-box;position:absolute;left:50%;bottom:12px;transform:translateX(-50%);max-width:calc(100% - 20px);min-height:44px;display:flex;align-items:center;justify-content:center;border:2px solid #241824;border-radius:10px;background:#f32982;padding:10px 16px;font-weight:800;font-size:14px;line-height:1.2;box-shadow:0 3px #a30f57}
     #nb-game .nb-loss-player iframe {display:block;width:100%;height:100%;border:0}
-    #nb-game .nb-loss-external {display:inline-flex;align-items:center;min-height:44px;margin-top:4px;color:#701d35;font-size:13px;font-weight:800}
+    #nb-game .nb-loss-external {display:inline-flex;align-items:center;justify-content:center;min-height:44px;color:#701d35;font-size:13px;font-weight:800}
     @media(max-width:600px){#nb-game .nb-card.nb-has-loss-video{padding:14px 12px}#nb-game .nb-loss-memory{margin:10px 0 12px}}
   `;
   document.head.append(css);
@@ -33,6 +34,7 @@
     card.classList.add('nb-has-loss-video');overlay.classList.add('nb-with-memory');
     const section=document.createElement('section');section.className='nb-loss-memory';section.setAttribute('aria-label','BAD OMEN music video');
     const heading=document.createElement('h3');heading.textContent='BAD OMEN · Official music video';
+    const copy=document.createElement('p');copy.className='nb-loss-copy';copy.textContent='Watch the BAD OMEN music video to find out how the others were taken out at Nuttin’ Burger.';
     const player=document.createElement('div');player.className='nb-loss-player';
     const cover=document.createElement('button');cover.type='button';cover.className='nb-loss-cover';cover.setAttribute('aria-label','Play BAD OMEN official music video');
     const image=new Image();image.src='/kloset/bad-omen-video-cover.webp';image.alt='K and his co-star facing each other in the BAD OMEN music video';image.decoding='async';
@@ -44,7 +46,7 @@
       iframe.onload=()=>iframe.focus();player.replaceChildren(iframe);
     };
     const external=document.createElement('a');external.className='nb-loss-external';external.href='https://www.youtube.com/watch?v=DPjcQLbagwY';external.target='_blank';external.rel='noopener';external.textContent='Watch on YouTube ↗';
-    section.append(heading,player,external);card.insertBefore(section,card.querySelector('.nb-primary'));
+    section.append(heading,copy,player,external);card.insertBefore(section,card.querySelector('.nb-primary'));
   }
   function attach() {
     const game=document.getElementById('nb-game');
