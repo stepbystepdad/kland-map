@@ -1,0 +1,352 @@
+[
+  {
+    "id": "bullet-for-your-valentine-cover-art",
+    "name": "Bubblegum Heart",
+    "sprite": "bullet-for-your-valentine-cover-art-k.webp",
+    "thumbnail": "bullet-for-your-valentine-cover-art-k-thumb.webp",
+    "era": "BULLET FOR YOUR VALENTINE",
+    "description": "A silver-white tank, black trousers and a pink bubble that steals the whole shot.",
+    "photos": [
+      {
+        "image": "memory-bullet-cover.jpg",
+        "label": "Single cover"
+      },
+      {
+        "image": "memory-bullet-portrait.jpg",
+        "label": "Press portrait"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 1
+  },
+  {
+    "id": "bullet-for-your-valentine-gamer",
+    "name": "Player One",
+    "sprite": "bullet-for-your-valentine-gamer-k.webp",
+    "thumbnail": "bullet-for-your-valentine-gamer-k-thumb.webp",
+    "era": "BULLET FOR YOUR VALENTINE",
+    "description": "Pink headphones around K’s neck, a white graphic tank and heart-print socks.",
+    "photos": [],
+    "videos": [
+      {
+        "image": "memory-gamer.jpg",
+        "label": "At the gaming desk",
+        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=17s"
+      }
+    ],
+    "links": [],
+    "fact": null,
+    "order": 2
+  },
+  {
+    "id": "bullet-for-your-valentine-gym-junkie",
+    "name": "Gym Junkie",
+    "sprite": "bullet-for-your-valentine-gym-junkie-k.webp",
+    "thumbnail": "bullet-for-your-valentine-gym-junkie-k-thumb.webp",
+    "era": "BULLET FOR YOUR VALENTINE",
+    "description": "Doodled abs, red wristbands and a towel around the neck. Ready for the close-up.",
+    "photos": [],
+    "videos": [
+      {
+        "image": "memory-gym.jpg",
+        "label": "The gym segment",
+        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=37s"
+      }
+    ],
+    "links": [],
+    "fact": null,
+    "order": 3
+  },
+  {
+    "id": "bullet-for-your-valentine-tradie",
+    "name": "Hi-Vis Heartthrob",
+    "sprite": "bullet-for-your-valentine-tradie-k.webp",
+    "thumbnail": "bullet-for-your-valentine-tradie-k-thumb.webp",
+    "era": "BULLET FOR YOUR VALENTINE",
+    "description": "A hi-vis vest, paint-spattered work trousers and a hammer over one shoulder.",
+    "photos": [],
+    "videos": [
+      {
+        "image": "memory-tradie.jpg",
+        "label": "In the workshop",
+        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=80s"
+      }
+    ],
+    "links": [],
+    "fact": null,
+    "order": 4
+  },
+  {
+    "id": "bullet-for-your-valentine-rockstar",
+    "name": "Star Treatment",
+    "sprite": "bullet-for-your-valentine-rockstar-k.webp",
+    "thumbnail": "bullet-for-your-valentine-rockstar-k-thumb.webp",
+    "era": "BULLET FOR YOUR VALENTINE",
+    "description": "A red-and-black mesh tank, a star at the chest and skull cuffs at the wrists.",
+    "photos": [],
+    "videos": [
+      {
+        "image": "memory-rockstar.jpg",
+        "label": "Playing with the band",
+        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=52s"
+      }
+    ],
+    "links": [],
+    "fact": null,
+    "order": 5
+  },
+  {
+    "id": "bad-omen-mob-boss",
+    "name": "Mob Boss",
+    "sprite": "bad-omen-mob-boss-k.webp",
+    "thumbnail": "bad-omen-mob-boss-k-thumb.webp",
+    "era": "BAD OMEN",
+    "description": "Copper hair and a flame-toned patterned shirt tucked into burgundy trousers.",
+    "photos": [],
+    "videos": [
+      {
+        "image": "memory-mob-boss.jpg",
+        "label": "At the bar",
+        "url": "https://www.youtube.com/watch?v=DPjcQLbagwY&t=3s"
+      }
+    ],
+    "links": [],
+    "fact": null,
+    "order": 6
+  },
+  {
+    "id": "bad-omen-bowie",
+    "name": "Golden Hour Bowie",
+    "sprite": "bad-omen-bowie-k.webp",
+    "thumbnail": "bad-omen-bowie-k-thumb.webp",
+    "era": "BAD OMEN",
+    "description": "A mustard suit over a waistcoat and tie, finished with two little black boots.",
+    "photos": [],
+    "videos": [
+      {
+        "image": "memory-bowie.jpg",
+        "label": "The golden suit on stage",
+        "url": "https://www.youtube.com/watch?v=DPjcQLbagwY&t=108s"
+      }
+    ],
+    "links": [],
+    "fact": null,
+    "order": 7
+  },
+  {
+    "id": "delulu",
+    "name": "Graffiti Crush",
+    "sprite": "delulu-k.webp",
+    "thumbnail": "delulu-k-thumb.webp",
+    "era": "DELULU",
+    "description": "Pale sleeveless denim, a red belt and a chain against dark, oversized trousers.",
+    "photos": [
+      {
+        "image": "memory-delulu-cover.jpg",
+        "label": "Single cover"
+      },
+      {
+        "image": "memory-delulu-press.jpg",
+        "label": "On the graffiti set"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 8
+  },
+  {
+    "id": "fool-s-gold-emo",
+    "name": "Emo on the Beach",
+    "sprite": "fool-s-gold-emo-k.webp",
+    "thumbnail": "fool-s-gold-emo-k-thumb.webp",
+    "era": "FOOL’S GOLD",
+    "description": "A white collared tank, black tie and wide-leg trousers with an eyelet belt.",
+    "photos": [
+      {
+        "image": "memory-fools-portrait.jpg",
+        "label": "The sheet-music beach shoot"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 9
+  },
+  {
+    "id": "sleepwalker",
+    "name": "Guitar After Dark",
+    "sprite": "sleepwalker-k.webp",
+    "thumbnail": "sleepwalker-k-thumb.webp",
+    "era": "SLEEPWALKER",
+    "description": "Dark red hair, a studded black vest and a red guitar slung over K’s shoulder.",
+    "photos": [
+      {
+        "image": "memory-sleepwalker-shore.jpg",
+        "label": "At the water’s edge"
+      },
+      {
+        "image": "memory-sleepwalker-sea.jpg",
+        "label": "Playing in the surf"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 10
+  },
+  {
+    "id": "i-think-i-need-therapy-strawberry-jam",
+    "name": "Strawberry Jam",
+    "sprite": "i-think-i-need-therapy-strawberry-jam-k.webp",
+    "thumbnail": "i-think-i-need-therapy-strawberry-jam-k-thumb.webp",
+    "era": "I THINK I NEED THERAPY!",
+    "description": "Champagne mesh, silver trousers and a generous splatter of strawberry red.",
+    "photos": [
+      {
+        "image": "memory-therapy-cover.jpg",
+        "label": "Single cover"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 11
+  },
+  {
+    "id": "o2-poster-boy",
+    "name": "Poster Boy",
+    "sprite": "o2-poster-boy-k.webp",
+    "thumbnail": "o2-poster-boy-k-thumb.webp",
+    "era": "O2",
+    "description": "A backwards cap, white tank and oversized black jacket from the O2 shoot.",
+    "photos": [
+      {
+        "image": "memory-o2-poster.jpg",
+        "label": "The O2 poster"
+      },
+      {
+        "image": "memory-o2-shoot.jpg",
+        "label": "From the poster shoot"
+      }
+    ],
+    "videos": [],
+    "links": [
+      {
+        "label": "Signed O2 poster",
+        "url": "https://www.kevinsilvester.com/store/p/a2-sized-signed-o2-poster"
+      }
+    ],
+    "fact": null,
+    "order": 12
+  },
+  {
+    "id": "o2-punk",
+    "name": "After-Hours Punk",
+    "sprite": "o2-punk-k.webp",
+    "thumbnail": "o2-punk-k-thumb.webp",
+    "era": "O2",
+    "description": "Oxblood hair, black mesh and an open vest with silver details.",
+    "photos": [],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 13
+  },
+  {
+    "id": "it-boy-merch",
+    "name": "IT BOY Off Duty",
+    "sprite": "it-boy-merch-k.webp",
+    "thumbnail": "it-boy-merch-k-thumb.webp",
+    "era": "IT BOY",
+    "description": "The black IT BOY tee pairs pink lettering with dark denim and a red belt.",
+    "photos": [
+      {
+        "image": "memory-merch-tee.jpg",
+        "label": "The IT BOY tee, front and back"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 14
+  },
+  {
+    "id": "step-by-step-dad-cover-art",
+    "name": "Baby Tee Crush",
+    "sprite": "step-by-step-dad-cover-art-k.webp",
+    "thumbnail": "step-by-step-dad-cover-art-k-thumb.webp",
+    "era": "STEP BY STEP (DAD)",
+    "description": "The navy cropped tee puts the song title front and centre above wide charcoal trousers.",
+    "photos": [
+      {
+        "image": "memory-sbsd-cover.jpg",
+        "label": "Single cover"
+      },
+      {
+        "image": "memory-sbsd-press.jpg",
+        "label": "Press shoot outtake"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 15
+  },
+  {
+    "id": "step-by-step-dad-music-video",
+    "name": "Passenger Seat",
+    "sprite": "step-by-step-dad-music-video-k.webp",
+    "thumbnail": "step-by-step-dad-music-video-k-thumb.webp",
+    "era": "STEP BY STEP (DAD)",
+    "description": "Black mesh, a studded belt and layered silver chains, all the way down to red sneakers.",
+    "photos": [],
+    "videos": [
+      {
+        "image": "memory-sbsd-mv.jpg",
+        "label": "On the car set",
+        "url": "https://www.youtube.com/watch?v=-qC81VNEctY&t=66s"
+      }
+    ],
+    "links": [],
+    "fact": null,
+    "order": 16
+  },
+  {
+    "id": "bro-code-cover-art",
+    "name": "Courtside Cover Star",
+    "sprite": "bro-code-cover-art-k.webp",
+    "thumbnail": "bro-code-cover-art-k-thumb.webp",
+    "era": "BRO CODE",
+    "description": "Gold mesh, burgundy shorts and a pink basketball from the cover shoot.",
+    "photos": [
+      {
+        "image": "memory-bro-cover.jpg",
+        "label": "Single cover"
+      },
+      {
+        "image": "memory-bro-portrait.jpg",
+        "label": "Courtside portrait"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 17
+  },
+  {
+    "id": "bro-code-music-video",
+    "name": "Varsity K",
+    "sprite": "bro-code-music-video-k.webp",
+    "thumbnail": "bro-code-music-video-k-thumb.webp",
+    "era": "BRO CODE",
+    "description": "The BRO CODE music-video look pairs a red K-star jersey with matching shorts and a basketball tucked under one arm.",
+    "photos": [],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 18
+  }
+]
