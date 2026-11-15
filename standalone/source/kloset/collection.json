@@ -1,7 +1,7 @@
 [
   {
     "id": "bullet-for-your-valentine-cover-art",
-    "name": "Bubblegum Heart",
+    "name": "Bubblegum K",
     "sprite": "bullet-for-your-valentine-cover-art-k.webp",
     "thumbnail": "bullet-for-your-valentine-cover-art-k-thumb.webp",
     "era": "BULLET FOR YOUR VALENTINE",
@@ -23,7 +23,7 @@
   },
   {
     "id": "bullet-for-your-valentine-gamer",
-    "name": "Player One",
+    "name": "Gamer K",
     "sprite": "bullet-for-your-valentine-gamer-k.webp",
     "thumbnail": "bullet-for-your-valentine-gamer-k-thumb.webp",
     "era": "BULLET FOR YOUR VALENTINE",
@@ -42,7 +42,7 @@
   },
   {
     "id": "bullet-for-your-valentine-gym-junkie",
-    "name": "Gym Junkie",
+    "name": "Gym Junkie K",
     "sprite": "bullet-for-your-valentine-gym-junkie-k.webp",
     "thumbnail": "bullet-for-your-valentine-gym-junkie-k-thumb.webp",
     "era": "BULLET FOR YOUR VALENTINE",
@@ -61,7 +61,7 @@
   },
   {
     "id": "bullet-for-your-valentine-tradie",
-    "name": "Hi-Vis Heartthrob",
+    "name": "Tradie K",
     "sprite": "bullet-for-your-valentine-tradie-k.webp",
     "thumbnail": "bullet-for-your-valentine-tradie-k-thumb.webp",
     "era": "BULLET FOR YOUR VALENTINE",
@@ -80,7 +80,7 @@
   },
   {
     "id": "bullet-for-your-valentine-rockstar",
-    "name": "Star Treatment",
+    "name": "Rock Star K",
     "sprite": "bullet-for-your-valentine-rockstar-k.webp",
     "thumbnail": "bullet-for-your-valentine-rockstar-k-thumb.webp",
     "era": "BULLET FOR YOUR VALENTINE",
@@ -99,7 +99,7 @@
   },
   {
     "id": "bad-omen-mob-boss",
-    "name": "Mob Boss",
+    "name": "Mob Boss K",
     "sprite": "bad-omen-mob-boss-k.webp",
     "thumbnail": "bad-omen-mob-boss-k-thumb.webp",
     "era": "BAD OMEN",
@@ -118,7 +118,7 @@
   },
   {
     "id": "bad-omen-bowie",
-    "name": "Golden Hour Bowie",
+    "name": "K-vid Bowie",
     "sprite": "bad-omen-bowie-k.webp",
     "thumbnail": "bad-omen-bowie-k-thumb.webp",
     "era": "BAD OMEN",
@@ -137,7 +137,7 @@
   },
   {
     "id": "delulu",
-    "name": "Graffiti Crush",
+    "name": "Safety Pin Voodoo Doll K",
     "sprite": "delulu-k.webp",
     "thumbnail": "delulu-k-thumb.webp",
     "era": "DELULU",
@@ -159,10 +159,10 @@
   },
   {
     "id": "fool-s-gold-emo",
-    "name": "Emo on the Beach",
+    "name": "Emo K",
     "sprite": "fool-s-gold-emo-k.webp",
     "thumbnail": "fool-s-gold-emo-k-thumb.webp",
-    "era": "FOOL’S GOLD",
+    "era": "FOOL'S GOLD",
     "description": "A white collared tank, black tie and wide-leg trousers with an eyelet belt.",
     "photos": [
       {
@@ -177,7 +177,7 @@
   },
   {
     "id": "sleepwalker",
-    "name": "Guitar After Dark",
+    "name": "Studded Sadboi K",
     "sprite": "sleepwalker-k.webp",
     "thumbnail": "sleepwalker-k-thumb.webp",
     "era": "SLEEPWALKER",
@@ -199,7 +199,7 @@
   },
   {
     "id": "i-think-i-need-therapy-strawberry-jam",
-    "name": "Strawberry Jam",
+    "name": "\"Strawberry Jam\" K",
     "sprite": "i-think-i-need-therapy-strawberry-jam-k.webp",
     "thumbnail": "i-think-i-need-therapy-strawberry-jam-k-thumb.webp",
     "era": "I THINK I NEED THERAPY!",
@@ -217,7 +217,7 @@
   },
   {
     "id": "o2-poster-boy",
-    "name": "Poster Boy",
+    "name": "Poster Boy K",
     "sprite": "o2-poster-boy-k.webp",
     "thumbnail": "o2-poster-boy-k-thumb.webp",
     "era": "O2",
@@ -244,7 +244,7 @@
   },
   {
     "id": "o2-punk",
-    "name": "After-Hours Punk",
+    "name": "Gothic K",
     "sprite": "o2-punk-k.webp",
     "thumbnail": "o2-punk-k-thumb.webp",
     "era": "O2",
@@ -257,10 +257,10 @@
   },
   {
     "id": "it-boy-merch",
-    "name": "IT BOY Off Duty",
+    "name": "IT BOY Merch K",
     "sprite": "it-boy-merch-k.webp",
     "thumbnail": "it-boy-merch-k-thumb.webp",
-    "era": "IT BOY",
+    "era": "Merch",
     "description": "The black IT BOY tee pairs pink lettering with dark denim and a red belt.",
     "photos": [
       {
@@ -275,7 +275,7 @@
   },
   {
     "id": "step-by-step-dad-cover-art",
-    "name": "Baby Tee Crush",
+    "name": "Australia's Next Top Bottom K",
     "sprite": "step-by-step-dad-cover-art-k.webp",
     "thumbnail": "step-by-step-dad-cover-art-k-thumb.webp",
     "era": "STEP BY STEP (DAD)",
@@ -297,7 +297,7 @@
   },
   {
     "id": "step-by-step-dad-music-video",
-    "name": "Passenger Seat",
+    "name": "Passenger Princess K",
     "sprite": "step-by-step-dad-music-video-k.webp",
     "thumbnail": "step-by-step-dad-music-video-k-thumb.webp",
     "era": "STEP BY STEP (DAD)",
@@ -316,7 +316,7 @@
   },
   {
     "id": "bro-code-cover-art",
-    "name": "Courtside Cover Star",
+    "name": "All Star Rock Star K",
     "sprite": "bro-code-cover-art-k.webp",
     "thumbnail": "bro-code-cover-art-k-thumb.webp",
     "era": "BRO CODE",
@@ -338,7 +338,7 @@
   },
   {
     "id": "bro-code-music-video",
-    "name": "Varsity K",
+    "name": "\"One of the Boys\" K",
     "sprite": "bro-code-music-video-k.webp",
     "thumbnail": "bro-code-music-video-k-thumb.webp",
     "era": "BRO CODE",

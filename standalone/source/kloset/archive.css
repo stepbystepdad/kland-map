@@ -91,7 +91,7 @@
 }
 #kl-archive .kl-hanging i::before { content: ''; position: absolute; inset: 2px 3px 3px; background: var(--cloth); clip-path: var(--tee); }
 #kl-archive .kl-hanging i::after { content:''; position:absolute; top:-8px; left:32%; width:36%; height:21px; border:3px solid var(--collar); border-radius:0 0 50% 50%; }
-#kl-archive .kl-card { display: grid; grid-template-rows: minmax(0,1fr) 65px; width: min(76%, 340px); min-height: 0; position: relative; }
+#kl-archive .kl-card { display: grid; grid-template-rows: minmax(0,1fr) 92px; width: min(76%, 340px); min-height: 0; position: relative; }
 #kl-archive .kl-window {
   position: relative; overflow: hidden; border: 3px solid var(--ink); border-radius: 50% 50% 10px 10px / 26% 26% 9px 9px;
   background: #edb9b4; box-shadow: inset 0 0 0 4px #df9e96, inset 0 0 0 6px #ac5d66, 3px 3px 0 #682035;
@@ -100,12 +100,13 @@
 #kl-archive .kl-window::after { content:''; position:absolute; left:0; right:0; bottom:0; height:7%; border-top:2px solid #cb8985; background:#dea09a; }
 #kl-archive .kl-sprite { position:absolute; z-index:1; bottom:4%; left:5%; width:90%; height:90%; object-fit:contain; object-position:center bottom; filter:drop-shadow(1px 3px 0 #651f332b); }
 #kl-archive .kl-nameplate {
-  position: relative; align-self: center; justify-self: center; max-width: 100%; padding: 5px 12px 6px;
+  position: relative; align-self: center; justify-self: center; width:100%; height:86px; padding:5px 8px;
+  display:flex; flex-direction:column; justify-content:center;
   text-align: center; border: 2px solid var(--ink); border-radius: 8px; background: #f5cf9c;
   color: var(--ink); box-shadow: inset 0 0 0 2px #ffe3b8, 0 2px #551b2c;
 }
 #kl-archive .kl-project { display: block; font-size: 10px; line-height: 1.2; font-weight: 800; letter-spacing: .08em; }
-#kl-archive .kl-name { font: bold clamp(20px,2.35vw,30px)/1.08 Georgia,serif; letter-spacing: -.04em; }
+#kl-archive .kl-name { font: bold clamp(20px,2.35vw,28px)/1.08 Georgia,serif; letter-spacing: -.04em; }
 #kl-archive .kl-door {
   min-width: 0; min-height: 0; display: grid; grid-template-rows: 44px minmax(0,1fr); position: relative; padding: 7px 19px 15px;
   border-inline-start: 6px double #d77c75; background: #73213a;
@@ -134,10 +135,14 @@
 #kl-archive .kl-links:empty { display:none; }
 #kl-archive .kl-solo { grid-template-columns:minmax(0,1fr); }
 #kl-archive .kl-drawer {
-  display:grid; grid-template-columns:44px minmax(0,1fr) 44px; align-items:center; gap:10px;
+  display:grid; grid-template-columns:minmax(0,1fr); align-items:center; gap:10px;
   padding:3px 10px 5px; border-top:4px solid var(--ink); background:#9e4050; box-shadow:inset 0 4px #c8686b,inset 0 -4px #78253a;
 }
 #kl-archive .kl-arrow { height:44px; width:44px; font:bold 32px/1 Arial,sans-serif; }
+#kl-archive .kl-stage > .kl-arrow { position:absolute; top:calc(50% - 40px); z-index:3; }
+#kl-archive .kl-stage > .kl-prev { left:10px; }
+#kl-archive .kl-stage > .kl-next { right:10px; }
+
 #kl-archive .kl-rack {
   display:flex; align-items:center; gap:7px; min-width:0; height:100%; overflow-x:auto; overflow-y:hidden;
   padding:3px 3px 5px; scrollbar-width:thin; scrollbar-color:#d78d7d #7f2a40; overscroll-behavior-x:contain;
@@ -161,9 +166,9 @@
   #kl-archive .kl-spread { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,.98fr) minmax(0,1.02fr); margin:0 4px; border-width:2px; }
   #kl-archive .kl-stage { --rod-top:8px; padding:22px 12px 3px; }
   #kl-archive .kl-rail { height:7px; }
-  #kl-archive .kl-card { grid-template-rows:minmax(0,1fr) 44px; width:min(64%, 240px); }
-  #kl-archive .kl-nameplate { padding:2px 8px 3px; }
-  #kl-archive .kl-name { font-size:clamp(18px,5vw,23px); }
+  #kl-archive .kl-card { grid-template-rows:minmax(0,1fr) 72px; width:min(64%, 240px); }
+  #kl-archive .kl-nameplate { height:66px; padding:3px 6px; }
+  #kl-archive .kl-name { font-size:clamp(16px,4.6vw,21px); }
   #kl-archive .kl-project { font-size:8px; }
   #kl-archive .kl-hanging { width:49px; height:76px; }
   #kl-archive .kl-left { left:6%; } #kl-archive .kl-right { right:6%; }
@@ -174,7 +179,7 @@
   #kl-archive .kl-polaroid figcaption { font-size:12px; }
   #kl-archive .kl-links { right:19px; bottom:37px; }
   #kl-archive .kl-solo { grid-template-rows:minmax(0,1fr); }
-  #kl-archive .kl-solo .kl-card { width:min(84%,320px); }
+  #kl-archive .kl-solo .kl-card { width:min(64%,320px); }
   #kl-archive .kl-drawer { gap:5px; padding:2px 5px 4px; }
   #kl-archive .kl-rack { gap:5px; padding-block:2px; }
   #kl-archive .kl-rack button { height:46px; flex-basis:41px; }
@@ -188,8 +193,8 @@
   #kl-archive .kl-close { width:38px; height:36px; }
   #kl-archive h1 { font-size:27px; }
   #kl-archive .kl-stage { --rod-top:5px; padding:20px 5px 2px; }
-  #kl-archive .kl-card { grid-template-rows:minmax(0,1fr) 36px; width:75%; }
-  #kl-archive .kl-nameplate { padding:1px 6px; }
+  #kl-archive .kl-card { grid-template-rows:minmax(0,1fr) 66px; width:75%; }
+  #kl-archive .kl-nameplate { height:60px; padding:2px 5px; }
   #kl-archive .kl-name { font-size:16px; } #kl-archive .kl-project { font-size:8px; }
   #kl-archive .kl-door { padding:1px 8px 6px;grid-template-rows:35px minmax(0,1fr); }
   #kl-archive .kl-polaroid { grid-template-rows:minmax(0,1fr) 18px; }

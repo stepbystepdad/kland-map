@@ -43,6 +43,8 @@
                 <div class="kl-window"><img class="kl-sprite" alt="" draggable="false"></div>
                 <div class="kl-nameplate"><span class="kl-project"></span><h2 class="kl-name"></h2></div>
               </div>
+              <button class="kl-arrow kl-prev" aria-label="Previous outfit">‹</button>
+              <button class="kl-arrow kl-next" aria-label="Next outfit">›</button>
             </section>
             <section class="kl-door" aria-label="Spotted in" hidden>
               <div class="kl-memoryhead"><h3>Spotted in…</h3><div class="kl-memnav"></div></div>
@@ -51,9 +53,7 @@
             </section>
           </div>
           <div class="kl-drawer">
-            <button class="kl-arrow kl-prev" aria-label="Previous outfit">‹</button>
             <nav class="kl-rack" aria-label="Jump to an outfit"></nav>
-            <button class="kl-arrow kl-next" aria-label="Next outfit">›</button>
           </div>
         </div>
         <span class="kl-sr" aria-live="polite" aria-atomic="true"></span>
