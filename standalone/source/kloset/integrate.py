@@ -34,6 +34,24 @@ def add_placement(script, placement):
         data[id].update(definition['placement'])
     return script[:start]+json.dumps(data,ensure_ascii=False,separators=(',',':'))+script[start+length:]
 
+def add_merch(script, placement=None):
+    key = 'const merch='
+    assert script.count(key) == 1
+    start = script.index(key)+len(key)
+    data, length = json.JSONDecoder().raw_decode(script[start:])
+    item = json.loads((HERE/'merch-product.json').read_text())
+    data['items'] = [entry for entry in data['items'] if entry['url'] != item['url']]
+    data['items'].insert(0, item)
+    data['selection'] = 'All nine products in the official store'
+    data['checked'] = '2026-11-16'
+    script = script[:start]+json.dumps(data,ensure_ascii=False,separators=(',',':'))+script[start+length:]
+    badge = "if(/LIMITED/.test(item.name))imageBox.append(node('span','merch-badge','LIMITED'));"
+    preorder = "if(item.preorder)imageBox.append(node('span','merch-badge','DROPPING SOON'));"
+    if badge in script and preorder not in script:
+        script = script.replace(badge, badge+preorder, 1)
+    script = script.replace("node('span','merch-shop-link','Shop ↗')", "node('span','merch-shop-link',item.preorder?'Preorder ↗':'Shop ↗')", 1)
+    return script
+
 def add_scene(html, p):
     anchor = '<div class="scene-sprite landmark-art" data-scenery="landmark" data-landmark="community-clubhouse"'
     assert html.count(anchor) == 1
@@ -92,7 +110,7 @@ def add_scene(html, p):
 
 def install(html, output):
     placement = json.loads((HERE/'placement.json').read_text())
-    html = add_scene(add_placement(add_location(html, placement), placement), placement)
+    html = add_scene(add_merch(add_placement(add_location(html, placement), placement)), placement)
     target = output/'kloset'
     target.mkdir(exist_ok=True)
     for file in HERE.iterdir():
