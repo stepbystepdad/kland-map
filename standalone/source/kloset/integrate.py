@@ -76,6 +76,18 @@ def add_scene(html, p):
         root, count = re.subn(r'left:[^;]+;top:[^;]+;width:[^;]+;height:[^;]+;',geometry,roots[0],count=1)
         assert count == 1
         html = html.replace(roots[0],root,1)
+    # Reuse native scenery art and masks in the reviewed clearing.
+    for item in json.loads((HERE/'landscape.json').read_text()):
+        pattern = r'<div[^>]*data-layer="'+re.escape(item['source'])+r'"[^>]*><img[^>]*></div>'
+        originals = re.findall(pattern, html)
+        assert originals, item['source']
+        root = originals[0]
+        root = root.replace('data-layer="'+item['source']+'"','data-layer="'+item['name']+'"',1)
+        geometry = f'left:{item["x"]}px;top:{item["y"]}px;width:{item["w"]}px;height:{item["h"]}px;'
+        root, count = re.subn(r'left:[^;]+;top:[^;]+;width:[^;]+;height:[^;]+;',geometry,root,count=1)
+        assert count == 1
+        root = re.sub(r'z-index:[^;]+;',f'z-index:{item["z"]};',root,count=1)
+        html = html.replace(anchor,root+anchor,1)
     return html
 
 def install(html, output):
@@ -86,4 +98,4 @@ def install(html, output):
     for file in HERE.iterdir():
         if file.suffix in {'.webp', '.jpg', '.png', '.gif', '.json', '.css', '.js'} and file.name not in {'placement.json','landmarks.json'}:
             shutil.copyfile(file, target/file.name)
-    return html.replace('</head>', '<script defer src="/kloset/archive.js"></script></head>', 1)
+    return html.replace('</head>', '<script defer src="/kloset/archive.js"></script><script defer src="/kloset/burger-memory.js"></script><script defer src="/kloset/merch-stock.js"></script></head>', 1)

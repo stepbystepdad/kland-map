@@ -9,11 +9,11 @@
     "photos": [
       {
         "image": "memory-bullet-cover.jpg",
-        "label": "Single cover"
+        "label": "BULLET FOR YOUR VALENTINE Single Cover"
       },
       {
-        "image": "memory-bullet-portrait.jpg",
-        "label": "Press portrait"
+        "label": "BULLET FOR YOUR VALENTINE Single Shoot",
+        "image": "memory-upload-4f4737732431ee9d3622.jpg"
       }
     ],
     "videos": [],
@@ -31,9 +31,9 @@
     "photos": [],
     "videos": [
       {
-        "image": "memory-gamer.jpg",
-        "label": "At the gaming desk",
-        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=17s"
+        "image": "memory-upload-d57658d75d3be6380e76.png",
+        "label": "BULLET FOR YOUR VALENTINE Music Video",
+        "url": "https://youtu.be/Kd6tgfb4Qm0?si=fPjjGOTciiWEkt8w&t=3"
       }
     ],
     "links": [],
@@ -50,9 +50,9 @@
     "photos": [],
     "videos": [
       {
-        "image": "memory-gym.jpg",
-        "label": "The gym segment",
-        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=37s"
+        "label": "BULLET FOR YOUR VALENTINE Music Video",
+        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=37s",
+        "image": "memory-upload-7fc56fe8fdfba258a200.png"
       }
     ],
     "links": [],
@@ -69,9 +69,9 @@
     "photos": [],
     "videos": [
       {
-        "image": "memory-tradie.jpg",
-        "label": "In the workshop",
-        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=80s"
+        "label": "BULLET FOR YOUR VALENTINE Music Video",
+        "url": "https://youtu.be/Kd6tgfb4Qm0?si=J3j_bFucO-Tc8zcp&t=57",
+        "image": "memory-upload-e3b7bb3a67fd72ccf51e.png"
       }
     ],
     "links": [],
@@ -88,9 +88,9 @@
     "photos": [],
     "videos": [
       {
-        "image": "memory-rockstar.jpg",
-        "label": "Playing with the band",
-        "url": "https://www.youtube.com/watch?v=Kd6tgfb4Qm0&t=52s"
+        "label": "BULLET FOR YOUR VALENTINE Music Video",
+        "url": "https://youtu.be/Kd6tgfb4Qm0?si=g2c6rH2SK8N73iV_&t=87",
+        "image": "memory-upload-12178e52360e32d65ad0.png"
       }
     ],
     "links": [],
@@ -107,9 +107,9 @@
     "photos": [],
     "videos": [
       {
-        "image": "memory-mob-boss.jpg",
-        "label": "At the bar",
-        "url": "https://www.youtube.com/watch?v=DPjcQLbagwY&t=3s"
+        "label": "BAD OMEN Music Video",
+        "url": "https://youtu.be/DPjcQLbagwY?si=Ha71S3pteWWnf_Lc",
+        "image": "memory-upload-600f1f7f0ae8af820c55.png"
       }
     ],
     "links": [],
@@ -126,9 +126,9 @@
     "photos": [],
     "videos": [
       {
-        "image": "memory-bowie.jpg",
-        "label": "The golden suit on stage",
-        "url": "https://www.youtube.com/watch?v=DPjcQLbagwY&t=108s"
+        "label": "BAD OMEN Music Video",
+        "url": "https://youtu.be/DPjcQLbagwY?si=WQSeuItEmShgQ6XX",
+        "image": "memory-upload-4eafb7e7c1ce59a9f552.png"
       }
     ],
     "links": [],
@@ -145,11 +145,11 @@
     "photos": [
       {
         "image": "memory-delulu-cover.jpg",
-        "label": "Single cover"
+        "label": "DELULU Single cover"
       },
       {
         "image": "memory-delulu-press.jpg",
-        "label": "On the graffiti set"
+        "label": "DELULU Single Shoot"
       }
     ],
     "videos": [],
@@ -167,10 +167,15 @@
     "photos": [
       {
         "image": "memory-fools-portrait.jpg",
-        "label": "The sheet-music beach shoot"
+        "label": "FOOL'S GOLD Single Cover"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "label": "FOOL'S GOLD Lyric video",
+        "url": "https://youtu.be/5ntn5wqVlAk?si=PcUXYXE_VQrgWPz8"
+      }
+    ],
     "links": [],
     "fact": null,
     "order": 9
@@ -185,14 +190,20 @@
     "photos": [
       {
         "image": "memory-sleepwalker-shore.jpg",
-        "label": "At the water’s edge"
+        "label": "SLEEPWALKER Visualiser Shoot"
       },
       {
         "image": "memory-sleepwalker-sea.jpg",
-        "label": "Playing in the surf"
+        "label": "SLEEPWALKER Visualiser Shoot"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "label": "SLEEPWALKER Lyric Video",
+        "url": "https://youtu.be/VDN1mmktwWM?si=p7YYEqNhiWhs4-eW",
+        "image": "memory-upload-10f1b76ea9b281ffd90c.png"
+      }
+    ],
     "links": [],
     "fact": null,
     "order": 10
@@ -207,10 +218,16 @@
     "photos": [
       {
         "image": "memory-therapy-cover.jpg",
-        "label": "Single cover"
+        "label": "I THINK I NEED THERAPY! Single cover"
       }
     ],
-    "videos": [],
+    "videos": [
+      {
+        "label": "I THINK I NEED THERAPY! Music video",
+        "url": "https://youtu.be/PD5rneum2W0?si=8Q5qmKGLH3XBbLEh&t=141",
+        "image": "memory-upload-d461628129dce53afc63.png"
+      }
+    ],
     "links": [],
     "fact": null,
     "order": 11
@@ -224,12 +241,8 @@
     "description": "A backwards cap, white tank and oversized black jacket from the O2 shoot.",
     "photos": [
       {
-        "image": "memory-o2-poster.jpg",
-        "label": "The O2 poster"
-      },
-      {
-        "image": "memory-o2-shoot.jpg",
-        "label": "From the poster shoot"
+        "label": "O2 Cover Art",
+        "image": "memory-upload-b1ef79f529ffff2499d3.jpg"
       }
     ],
     "videos": [],
@@ -249,7 +262,12 @@
     "thumbnail": "o2-punk-k-thumb.webp?v=b98653e7a60c",
     "era": "O2",
     "description": "Oxblood hair, black mesh and an open vest with silver details.",
-    "photos": [],
+    "photos": [
+      {
+        "label": "O2 Press Shoot",
+        "image": "memory-upload-fb7e733c1b38532b84ec.jpg"
+      }
+    ],
     "videos": [],
     "links": [],
     "fact": null,
@@ -258,18 +276,18 @@
   {
     "id": "step-by-step-dad-cover-art",
     "name": "Australia's Next Top Bottom K",
-    "sprite": "step-by-step-dad-cover-art-k.webp?v=03bcda0d6d87",
-    "thumbnail": "step-by-step-dad-cover-art-k-thumb.webp?v=a65e81a15434",
+    "sprite": "step-by-step-dad-cover-art-k.webp?v=257e5b98ea4b",
+    "thumbnail": "step-by-step-dad-cover-art-k-thumb.webp?v=2ce2d27e30c8",
     "era": "STEP BY STEP (DAD)",
     "description": "The navy cropped tee puts the song title front and centre above wide charcoal trousers.",
     "photos": [
       {
         "image": "memory-sbsd-cover.jpg",
-        "label": "Single cover"
+        "label": "STEP BY STEP (DAD) Single Cover"
       },
       {
         "image": "memory-sbsd-press.jpg",
-        "label": "Press shoot outtake"
+        "label": "STEP BY STEP (DAD) Press Shoot"
       }
     ],
     "videos": [],
@@ -287,9 +305,9 @@
     "photos": [],
     "videos": [
       {
-        "image": "memory-sbsd-mv.jpg",
-        "label": "On the car set",
-        "url": "https://www.youtube.com/watch?v=-qC81VNEctY&t=66s"
+        "label": "STEP BY STEP (DAD) Music Video",
+        "url": "https://www.youtube.com/watch?v=-qC81VNEctY&t=66s",
+        "image": "memory-upload-d8238214799e92b7b583.png"
       }
     ],
     "links": [],

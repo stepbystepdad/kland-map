@@ -37,9 +37,30 @@
     }
   }
 
+  function hideRackLabel() {
+    if (dialog) $('.kl-rack-label').hidden = true;
+  }
+  function showRackLabel(target, name) {
+    const label = $('.kl-rack-label'), drawer = $('.kl-drawer');
+    label.textContent = name; label.hidden = false;
+    const box = target.getBoundingClientRect(), bounds = drawer.getBoundingClientRect();
+    const half = label.offsetWidth/2;
+    label.style.left = Math.max(half+8,Math.min(drawer.clientWidth-half-8,box.left+box.width/2-bounds.left))+'px';
+  }
+
+  function fitTitle() {
+    const title = $('.kl-name');
+    title.style.fontSize = '';
+    if (!title.clientWidth) return;
+    const size = parseFloat(getComputedStyle(title).fontSize);
+    if (title.scrollWidth > title.clientWidth) {
+      title.style.fontSize = Math.floor(size*(title.clientWidth-2)/title.scrollWidth*10)/10+'px';
+    }
+  }
+
   function create() {
     const css = document.createElement('link');
-    css.rel = 'stylesheet'; css.href = root + 'archive.css';
+    css.rel = 'stylesheet'; css.href = root + 'archive.css?v=20261116-ui3';
     document.head.append(css);
     dialog = document.createElement('dialog');
     dialog.id = 'kl-archive';
@@ -68,7 +89,7 @@
                     <span>Coming soon</span>
                   </div>
                 </div>
-                <div class="kl-nameplate"><span class="kl-project"></span><h2 class="kl-name"></h2></div>
+                <div class="kl-nameplate"><h2 class="kl-name"></h2></div>
               </div>
               <button class="kl-arrow kl-prev" aria-label="Previous outfit">‹</button>
               <button class="kl-arrow kl-next" aria-label="Next outfit">›</button>
@@ -80,16 +101,18 @@
             </section>
           </div>
           <div class="kl-drawer">
-            <nav class="kl-rack" aria-label="Jump to an outfit"><div class="kl-rack-track"></div></nav>
+            <nav class="kl-rack" aria-label="Jump to an outfit"><div class="kl-rack-track"></div></nav><div class="kl-rack-label" id="kl-rack-label" role="tooltip" hidden></div>
           </div>
         </div>
         <span class="kl-sr" aria-live="polite" aria-atomic="true"></span>
       </div>`;
     document.body.append(dialog);
     new ResizeObserver(() => centerRack()).observe($('.kl-rack'), {box:'border-box'});
+    new ResizeObserver(fitTitle).observe($('.kl-nameplate'));
     $('.kl-close').onclick = () => dialog.close();
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
     dialog.addEventListener('close', () => {
+      hideRackLabel();
       ++renderToken;
       dialog.querySelectorAll('.kl-sprite-outgoing').forEach(image => image.remove());
       $('.kl-sprite').getAnimations().forEach(animation => animation.cancel());
@@ -135,13 +158,21 @@
     const entries = look.locked ? [] : [...(look.photos || []), ...(look.videos || [])].filter(m => m.image || m.url);
     const door = $('.kl-door'), pager = $('.kl-memnav');
     const links = look.locked ? [] : (look.links || []).filter(item => item.url);
-    door.hidden = !entries.length && !links.length;
+    door.hidden = !look.locked && !entries.length && !links.length;
     $('.kl-spread').classList.toggle('kl-solo', door.hidden);
-    $('.kl-memoryhead').hidden = !entries.length;
-    $('.kl-polaroid').hidden = !entries.length;
+    $('.kl-memoryhead').hidden = !look.locked && !entries.length;
+    $('.kl-polaroid').hidden = !look.locked && !entries.length;
     pager.replaceChildren();
     $('.kl-photo').replaceChildren();
-    if (entries.length) {
+    if (look.locked) {
+      const panel = document.createElement('div');
+      panel.className = 'kl-locked-memory';
+      const lock = document.createElement('span');
+      lock.className = 'kl-lock-icon'; lock.setAttribute('aria-hidden','true');
+      const label = document.createElement('span'); label.textContent = 'Memories coming soon';
+      panel.append(lock,label); $('.kl-photo').append(panel);
+      $('.kl-polaroid figcaption').textContent = 'Coming soon';
+    } else if (entries.length) {
       const m = entries[memory];
       if (entries.length > 1) {
         const step = n => {memory = wrap(memory+n,entries.length); renderMemory(look);};
@@ -167,12 +198,13 @@
 
   function go(n, direction=0) {
     if (!looks?.length) return;
+    hideRackLabel();
     const steps = n-index;
     index=wrap(n,looks.length); memory=0;
     const look=looks[index], number=two(index+1), token=++renderToken;
     const locked = look.locked === true;
     $('.kl-lockscreen').hidden = !locked;
-    $('.kl-name').textContent=look.name; $('.kl-project').textContent=look.era;
+    $('.kl-name').textContent=look.name; fitTitle();
     $('.kl-count').textContent='LOOK '+number+' / '+two(looks.length);
     const sprite = $('.kl-sprite');
     sprite.getAnimations().forEach(animation => animation.cancel());
@@ -245,7 +277,12 @@
               const steps = position-(looks.length+index);
               go(index+steps, Math.sign(steps));
             });
-            b.title=label;
+            b.addEventListener('pointerenter', e => {
+              if (e.pointerType !== 'touch') showRackLabel(b,look.name);
+            });
+            b.addEventListener('pointerleave',hideRackLabel);
+            b.addEventListener('focus',()=>showRackLabel(b,look.name));
+            b.addEventListener('blur',hideRackLabel);
             b.dataset.outfit=String(i);
             if (copy !== 1) {
               b.setAttribute('aria-hidden','true');
