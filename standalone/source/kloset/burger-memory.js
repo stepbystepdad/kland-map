@@ -9,7 +9,6 @@
     #nb-game .nb-card.nb-has-loss-video p {margin-bottom:10px}
     #nb-game .nb-card.nb-has-loss-video > .nb-primary {position:static;display:block;margin:0 auto 5px;min-height:44px}
     #nb-game .nb-loss-memory {display:flex;flex-direction:column;align-items:center;gap:10px;margin:12px 0 14px}
-    #nb-game .nb-loss-memory h3 {font-size:13px;letter-spacing:.04em;margin:0;color:#701d35}
     #nb-game .nb-loss-memory .nb-loss-copy {max-width:43ch;margin:0;font-size:13px;line-height:1.45}
     #nb-game .nb-loss-player {box-sizing:border-box;flex:none;aspect-ratio:16/9;width:100%;background:#241824;border:2px solid #241824;border-radius:12px;overflow:hidden}
     #nb-game .nb-loss-cover {position:relative;display:block;width:100%;height:100%;padding:0;border:0;background:#241824;color:#fff8ee}
@@ -33,7 +32,6 @@
     if (existing) return;
     card.classList.add('nb-has-loss-video');overlay.classList.add('nb-with-memory');
     const section=document.createElement('section');section.className='nb-loss-memory';section.setAttribute('aria-label','BAD OMEN music video');
-    const heading=document.createElement('h3');heading.textContent='BAD OMEN · Official music video';
     const copy=document.createElement('p');copy.className='nb-loss-copy';copy.textContent='Watch the BAD OMEN music video to find out how the others were taken out at Nuttin’ Burger.';
     const player=document.createElement('div');player.className='nb-loss-player';
     const cover=document.createElement('button');cover.type='button';cover.className='nb-loss-cover';cover.setAttribute('aria-label','Play BAD OMEN official music video');
@@ -46,7 +44,7 @@
       iframe.onload=()=>iframe.focus();player.replaceChildren(iframe);
     };
     const external=document.createElement('a');external.className='nb-loss-external';external.href='https://www.youtube.com/watch?v=DPjcQLbagwY';external.target='_blank';external.rel='noopener';external.textContent='Watch on YouTube ↗';
-    section.append(heading,copy,player,external);card.insertBefore(section,card.querySelector('.nb-primary'));
+    section.append(copy,player,external);card.insertBefore(section,card.querySelector('.nb-primary'));
   }
   function attach() {
     const game=document.getElementById('nb-game');

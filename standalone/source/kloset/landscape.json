@@ -1,47 +1,101 @@
 [
   {
+    "name": "kloset-grove-back-gum",
+    "source": "tree-gum.png",
+    "x": 578,
+    "y": 227,
+    "w": 23,
+    "h": 20.484375,
+    "z": 89
+  },
+  {
     "name": "kloset-grove-back-cypress",
     "source": "tree-cypress.png",
-    "x": 559,
-    "y": 229,
-    "w": 14,
-    "h": 36.75,
+    "x": 557,
+    "y": 219,
+    "w": 12,
+    "h": 31.5,
+    "z": 90
+  },
+  {
+    "name": "kloset-grove-back-birch",
+    "source": "tree-birch-flat.png",
+    "x": 535,
+    "y": 226,
+    "w": 17,
+    "h": 29.973684210526315,
     "z": 91
   },
   {
-    "name": "kloset-grove-mixed-canopy",
-    "source": "forest-compact.png",
-    "x": 535,
-    "y": 237,
-    "w": 67.9702868852,
-    "h": 58.5,
+    "name": "kloset-grove-middle-round",
+    "source": "tree-round.png",
+    "x": 553,
+    "y": 250,
+    "w": 20,
+    "h": 24.8,
+    "z": 92
+  },
+  {
+    "name": "kloset-grove-middle-cypress",
+    "source": "tree-cypress.png",
+    "x": 583,
+    "y": 250,
+    "w": 11,
+    "h": 28.875,
+    "z": 93
+  },
+  {
+    "name": "kloset-grove-middle-gum",
+    "source": "tree-gum.png",
+    "x": 531,
+    "y": 260,
+    "w": 22,
+    "h": 19.59375,
     "z": 94
   },
   {
     "name": "kloset-grove-amber-edge",
     "source": "tree-amber-clean.png",
-    "x": 583,
-    "y": 268,
-    "w": 17,
-    "h": 20.6791,
-    "z": 93
+    "x": 590,
+    "y": 279,
+    "w": 15,
+    "h": 18.246264705882353,
+    "z": 95
+  },
+  {
+    "name": "kloset-grove-front-gum",
+    "source": "tree-gum.png",
+    "x": 563,
+    "y": 281,
+    "w": 20,
+    "h": 17.8125,
+    "z": 96
+  },
+  {
+    "name": "kloset-grove-front-birch",
+    "source": "tree-birch-flat.png",
+    "x": 538,
+    "y": 278,
+    "w": 14,
+    "h": 24.68421052631579,
+    "z": 97
   },
   {
     "name": "kloset-grove-rock-left",
     "source": "rocks-nw-clean.png",
-    "x": 539,
-    "y": 292,
-    "w": 11,
-    "h": 7.834,
-    "z": 98
+    "x": 540,
+    "y": 302,
+    "w": 9,
+    "h": 6.409636363636364,
+    "z": 99
   },
   {
     "name": "kloset-grove-rock-right",
     "source": "rocks-ne-clean.png",
     "x": 589,
-    "y": 292,
-    "w": 11,
-    "h": 8.14183,
-    "z": 99
+    "y": 300,
+    "w": 9,
+    "h": 6.661497272727273,
+    "z": 100
   }
 ]
