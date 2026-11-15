@@ -43,7 +43,8 @@ def add_scene(html, p):
               f'height:{p["height"]}px;z-index:{p["z"]};overflow:hidden"><img src="{p["asset"]}" '
               'alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;max-width:none"></div>')
     html = html.replace(anchor, sprite+anchor, 1)
-    for id, definition in json.loads((HERE/'landmarks.json').read_text()).items():
+    definitions = json.loads((HERE/'landmarks.json').read_text())
+    for id, definition in definitions.items():
         pattern = r'(<div[^>]*data-landmark="'+re.escape(id)+r'"[^>]*>)<img[^>]*></div>'
         roots = list(re.finditer(pattern,html))
         assert len(roots) == 1
@@ -55,6 +56,16 @@ def add_scene(html, p):
         image = (f'<img src="{definition["placement"]["asset"]}" alt="" draggable="false" '
                  'style="position:absolute;inset:0;width:100%;height:100%;max-width:none"></div>')
         html = html[:match.start()]+root+image+html[match.end():]
+    ambulance = definitions['hurt-people-hospital'].get('ambulance')
+    if ambulance:
+        pattern = r'<div[^>]*data-layer="hurt-people-ambulance\.png"[^>]*>'
+        roots = re.findall(pattern, html)
+        assert len(roots) == 1
+        box = ambulance
+        geometry = f'left:{box["x"]}px;top:{box["y"]}px;width:{box["w"]}px;height:{box["h"]}px;'
+        root, count = re.subn(r'left:[^;]+;top:[^;]+;width:[^;]+;height:[^;]+;',geometry,roots[0],count=1)
+        assert count == 1
+        html = html.replace(roots[0],root,1)
     return html
 
 def install(html, output):

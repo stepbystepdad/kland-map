@@ -2,8 +2,8 @@
   {
     "id": "bullet-for-your-valentine-cover-art",
     "name": "Bubblegum K",
-    "sprite": "bullet-for-your-valentine-cover-art-k.webp",
-    "thumbnail": "bullet-for-your-valentine-cover-art-k-thumb.webp",
+    "sprite": "bullet-for-your-valentine-cover-art-k.webp?v=feacbb4a7574",
+    "thumbnail": "bullet-for-your-valentine-cover-art-k-thumb.webp?v=40f95b8a6d6c",
     "era": "BULLET FOR YOUR VALENTINE",
     "description": "A silver-white tank, black trousers and a pink bubble that steals the whole shot.",
     "photos": [
@@ -24,8 +24,8 @@
   {
     "id": "bullet-for-your-valentine-gamer",
     "name": "Gamer K",
-    "sprite": "bullet-for-your-valentine-gamer-k.webp",
-    "thumbnail": "bullet-for-your-valentine-gamer-k-thumb.webp",
+    "sprite": "bullet-for-your-valentine-gamer-k.webp?v=01193ea62621",
+    "thumbnail": "bullet-for-your-valentine-gamer-k-thumb.webp?v=b9b942e1b7a0",
     "era": "BULLET FOR YOUR VALENTINE",
     "description": "Pink headphones around K’s neck, a white graphic tank and heart-print socks.",
     "photos": [],
@@ -43,8 +43,8 @@
   {
     "id": "bullet-for-your-valentine-gym-junkie",
     "name": "Gym Junkie K",
-    "sprite": "bullet-for-your-valentine-gym-junkie-k.webp",
-    "thumbnail": "bullet-for-your-valentine-gym-junkie-k-thumb.webp",
+    "sprite": "bullet-for-your-valentine-gym-junkie-k.webp?v=85fbc3b8b366",
+    "thumbnail": "bullet-for-your-valentine-gym-junkie-k-thumb.webp?v=ca2faffdfc23",
     "era": "BULLET FOR YOUR VALENTINE",
     "description": "Doodled abs, red wristbands and a towel around the neck. Ready for the close-up.",
     "photos": [],
@@ -62,8 +62,8 @@
   {
     "id": "bullet-for-your-valentine-tradie",
     "name": "Tradie K",
-    "sprite": "bullet-for-your-valentine-tradie-k.webp",
-    "thumbnail": "bullet-for-your-valentine-tradie-k-thumb.webp",
+    "sprite": "bullet-for-your-valentine-tradie-k.webp?v=da5c9f7db5b7",
+    "thumbnail": "bullet-for-your-valentine-tradie-k-thumb.webp?v=0e0d1d8ea88d",
     "era": "BULLET FOR YOUR VALENTINE",
     "description": "A hi-vis vest, paint-spattered work trousers and a hammer over one shoulder.",
     "photos": [],
@@ -81,8 +81,8 @@
   {
     "id": "bullet-for-your-valentine-rockstar",
     "name": "Rock Star K",
-    "sprite": "bullet-for-your-valentine-rockstar-k.webp",
-    "thumbnail": "bullet-for-your-valentine-rockstar-k-thumb.webp",
+    "sprite": "bullet-for-your-valentine-rockstar-k.webp?v=2bee5f6ecd33",
+    "thumbnail": "bullet-for-your-valentine-rockstar-k-thumb.webp?v=9e9a439979a1",
     "era": "BULLET FOR YOUR VALENTINE",
     "description": "A red-and-black mesh tank, a star at the chest and skull cuffs at the wrists.",
     "photos": [],
@@ -100,8 +100,8 @@
   {
     "id": "bad-omen-mob-boss",
     "name": "Mob Boss K",
-    "sprite": "bad-omen-mob-boss-k.webp",
-    "thumbnail": "bad-omen-mob-boss-k-thumb.webp",
+    "sprite": "bad-omen-mob-boss-k.webp?v=f2e44f1d1abf",
+    "thumbnail": "bad-omen-mob-boss-k-thumb.webp?v=918bebb9f74a",
     "era": "BAD OMEN",
     "description": "Copper hair and a flame-toned patterned shirt tucked into burgundy trousers.",
     "photos": [],
@@ -119,8 +119,8 @@
   {
     "id": "bad-omen-bowie",
     "name": "K-vid Bowie",
-    "sprite": "bad-omen-bowie-k.webp",
-    "thumbnail": "bad-omen-bowie-k-thumb.webp",
+    "sprite": "bad-omen-bowie-k.webp?v=ca4e317a417f",
+    "thumbnail": "bad-omen-bowie-k-thumb.webp?v=2642d396f922",
     "era": "BAD OMEN",
     "description": "A mustard suit over a waistcoat and tie, finished with two little black boots.",
     "photos": [],
@@ -138,8 +138,8 @@
   {
     "id": "delulu",
     "name": "Safety Pin Voodoo Doll K",
-    "sprite": "delulu-k.webp",
-    "thumbnail": "delulu-k-thumb.webp",
+    "sprite": "delulu-k.webp?v=0fb90342ee83",
+    "thumbnail": "delulu-k-thumb.webp?v=088489d0b770",
     "era": "DELULU",
     "description": "Pale sleeveless denim, a red belt and a chain against dark, oversized trousers.",
     "photos": [
@@ -160,8 +160,8 @@
   {
     "id": "fool-s-gold-emo",
     "name": "Emo K",
-    "sprite": "fool-s-gold-emo-k.webp",
-    "thumbnail": "fool-s-gold-emo-k-thumb.webp",
+    "sprite": "fool-s-gold-emo-k.webp?v=284dd65bbd7b",
+    "thumbnail": "fool-s-gold-emo-k-thumb.webp?v=15d70e086056",
     "era": "FOOL'S GOLD",
     "description": "A white collared tank, black tie and wide-leg trousers with an eyelet belt.",
     "photos": [
@@ -178,8 +178,8 @@
   {
     "id": "sleepwalker",
     "name": "Studded Sadboi K",
-    "sprite": "sleepwalker-k.webp",
-    "thumbnail": "sleepwalker-k-thumb.webp",
+    "sprite": "sleepwalker-k.webp?v=1c0d0e4072c9",
+    "thumbnail": "sleepwalker-k-thumb.webp?v=756baff7bed9",
     "era": "SLEEPWALKER",
     "description": "Dark red hair, a studded black vest and a red guitar slung over K’s shoulder.",
     "photos": [
@@ -200,8 +200,8 @@
   {
     "id": "i-think-i-need-therapy-strawberry-jam",
     "name": "\"Strawberry Jam\" K",
-    "sprite": "i-think-i-need-therapy-strawberry-jam-k.webp",
-    "thumbnail": "i-think-i-need-therapy-strawberry-jam-k-thumb.webp",
+    "sprite": "i-think-i-need-therapy-strawberry-jam-k.webp?v=dfa7855ab40a",
+    "thumbnail": "i-think-i-need-therapy-strawberry-jam-k-thumb.webp?v=0fd133687410",
     "era": "I THINK I NEED THERAPY!",
     "description": "Champagne mesh, silver trousers and a generous splatter of strawberry red.",
     "photos": [
@@ -218,8 +218,8 @@
   {
     "id": "o2-poster-boy",
     "name": "Poster Boy K",
-    "sprite": "o2-poster-boy-k.webp",
-    "thumbnail": "o2-poster-boy-k-thumb.webp",
+    "sprite": "o2-poster-boy-k.webp?v=7db8d4c32474",
+    "thumbnail": "o2-poster-boy-k-thumb.webp?v=4dfd43312334",
     "era": "O2",
     "description": "A backwards cap, white tank and oversized black jacket from the O2 shoot.",
     "photos": [
@@ -245,8 +245,8 @@
   {
     "id": "o2-punk",
     "name": "Gothic K",
-    "sprite": "o2-punk-k.webp",
-    "thumbnail": "o2-punk-k-thumb.webp",
+    "sprite": "o2-punk-k.webp?v=17b1db6bf4af",
+    "thumbnail": "o2-punk-k-thumb.webp?v=b98653e7a60c",
     "era": "O2",
     "description": "Oxblood hair, black mesh and an open vest with silver details.",
     "photos": [],
@@ -258,8 +258,8 @@
   {
     "id": "step-by-step-dad-cover-art",
     "name": "Australia's Next Top Bottom K",
-    "sprite": "step-by-step-dad-cover-art-k.webp",
-    "thumbnail": "step-by-step-dad-cover-art-k-thumb.webp",
+    "sprite": "step-by-step-dad-cover-art-k.webp?v=03bcda0d6d87",
+    "thumbnail": "step-by-step-dad-cover-art-k-thumb.webp?v=a65e81a15434",
     "era": "STEP BY STEP (DAD)",
     "description": "The navy cropped tee puts the song title front and centre above wide charcoal trousers.",
     "photos": [
@@ -280,8 +280,8 @@
   {
     "id": "step-by-step-dad-music-video",
     "name": "Passenger Princess K",
-    "sprite": "step-by-step-dad-music-video-k.webp",
-    "thumbnail": "step-by-step-dad-music-video-k-thumb.webp",
+    "sprite": "step-by-step-dad-music-video-k.webp?v=2f474917c361",
+    "thumbnail": "step-by-step-dad-music-video-k-thumb.webp?v=a567521e40ed",
     "era": "STEP BY STEP (DAD)",
     "description": "Black mesh, a studded belt and layered silver chains, all the way down to red sneakers.",
     "photos": [],
@@ -299,8 +299,8 @@
   {
     "id": "it-boy-merch",
     "name": "IT BOY Merch K",
-    "sprite": "it-boy-merch-k.webp",
-    "thumbnail": "it-boy-merch-k-thumb.webp",
+    "sprite": "it-boy-merch-k.webp?v=0bcab2b4f435",
+    "thumbnail": "it-boy-merch-k-thumb.webp?v=7f7ffa286155",
     "era": "Merch",
     "description": "The black IT BOY tee pairs pink lettering with dark denim and a red belt.",
     "photos": [
@@ -318,8 +318,8 @@
   {
     "id": "bro-code-cover-art",
     "name": "All Star Rock Star K",
-    "sprite": "bro-code-cover-art-k.webp",
-    "thumbnail": "bro-code-cover-art-k-thumb.webp",
+    "sprite": "bro-code-cover-art-k.webp?v=d910e3dd8658",
+    "thumbnail": "bro-code-cover-art-k-thumb.webp?v=3bfc06b30bf7",
     "era": "BRO CODE",
     "description": "Gold mesh, burgundy shorts and a pink basketball from the cover shoot.",
     "photos": [
@@ -341,8 +341,8 @@
   {
     "id": "bro-code-music-video",
     "name": "\"One of the Boys\" K",
-    "sprite": "bro-code-music-video-k.webp",
-    "thumbnail": "bro-code-music-video-k-thumb.webp",
+    "sprite": "bro-code-music-video-k.webp?v=f381253e0788",
+    "thumbnail": "bro-code-music-video-k-thumb.webp?v=8e8ef3d9c648",
     "era": "BRO CODE",
     "description": "The BRO CODE music-video look pairs a red K-star jersey with matching shorts and a basketball tucked under one arm.",
     "photos": [],
