@@ -35,7 +35,12 @@ def externalize(match):
     manifest[url] = {'type': mime, 'bytes': len(decoded)}
     return url
 
+import sys
+sys.path.insert(0, str(SOURCE / 'kloset'))
+from integrate import install as install_kloset
+
 html = (SOURCE / 'map.html').read_text()
+html = install_kloset(html, OUT)
 html = html.replace('kland-portrait:steph', asset((SOURCE/'portraits/Steph-Profile.png').read_bytes(),'png'))
 html += '<script>'+ (SOURCE/'mobile-controls.js').read_text() + '</script>'
 html = re.sub(r'data:(image/(?:webp|avif|png));base64,([A-Za-z0-9+/=]+)', externalize, html)
