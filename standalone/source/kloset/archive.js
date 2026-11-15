@@ -40,7 +40,13 @@
                 <span class="kl-hanging kl-right"><i></i></span>
               </div>
               <div class="kl-card">
-                <div class="kl-window"><img class="kl-sprite" alt="" draggable="false"></div>
+                <div class="kl-window">
+                  <img class="kl-sprite" alt="" draggable="false">
+                  <div class="kl-lockscreen" role="status" hidden>
+                    <span class="kl-lock-icon" aria-hidden="true"></span>
+                    <span>Coming soon</span>
+                  </div>
+                </div>
                 <div class="kl-nameplate"><span class="kl-project"></span><h2 class="kl-name"></h2></div>
               </div>
               <button class="kl-arrow kl-prev" aria-label="Previous outfit">‹</button>
@@ -65,7 +71,7 @@
       ++renderToken;
       dialog.querySelectorAll('.kl-sprite-outgoing').forEach(image => image.remove());
       $('.kl-sprite').getAnimations().forEach(animation => animation.cancel());
-      $('.kl-sprite').hidden = false;
+      $('.kl-sprite').hidden = looks?.[index]?.locked === true;
       window.kuSetPlaceHash?.('');
       if (typeof selected !== 'undefined' && selected === place) {
         selected = null; window.KLandSelectPlace?.('');
@@ -94,9 +100,9 @@
   }
 
   function renderMemory(look) {
-    const entries = [...(look.photos || []), ...(look.videos || [])].filter(m => m.image || m.url);
+    const entries = look.locked ? [] : [...(look.photos || []), ...(look.videos || [])].filter(m => m.image || m.url);
     const door = $('.kl-door'), pager = $('.kl-memnav');
-    const links = (look.links || []).filter(item => item.url);
+    const links = look.locked ? [] : (look.links || []).filter(item => item.url);
     door.hidden = !entries.length && !links.length;
     $('.kl-spread').classList.toggle('kl-solo', door.hidden);
     $('.kl-memoryhead').hidden = !entries.length;
@@ -131,13 +137,15 @@
     if (!looks?.length) return;
     index=wrap(n,looks.length); memory=0;
     const look=looks[index], number=two(index+1), token=++renderToken;
+    const locked = look.locked === true;
+    $('.kl-lockscreen').hidden = !locked;
     $('.kl-name').textContent=look.name; $('.kl-project').textContent=look.era;
     $('.kl-count').textContent='LOOK '+number+' / '+two(looks.length);
     const sprite = $('.kl-sprite');
     sprite.getAnimations().forEach(animation => animation.cancel());
     dialog.querySelectorAll('.kl-sprite-outgoing').forEach(image => image.remove());
     let outgoing = null;
-    if (direction && sprite.complete && sprite.naturalWidth &&
+    if (!locked && direction && sprite.complete && sprite.naturalWidth &&
         !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       outgoing = sprite.cloneNode();
       outgoing.className = 'kl-sprite-outgoing';
@@ -146,15 +154,21 @@
       outgoing.setAttribute('aria-hidden', 'true');
       sprite.after(outgoing);
     }
-    sprite.hidden = !!outgoing;
-    sprite.alt=look.description ? look.name+'. '+look.description : look.name+' outfit';
-    sprite.src=url(look.sprite);
+    sprite.hidden = locked || !!outgoing;
+    if (locked) {
+      sprite.alt = '';
+      sprite.removeAttribute('src');
+    } else {
+      sprite.alt=look.description ? look.name+'. '+look.description : look.name+' outfit';
+      sprite.src=url(look.sprite);
+    }
     renderMemory(look);
     const rack=$('.kl-rack');
     [...rack.children].forEach((b,i)=>b.setAttribute('aria-current',String(i===index)));
     const active=rack.children[index];
     rack.scrollLeft += active.getBoundingClientRect().left-rack.getBoundingClientRect().left-(rack.clientWidth-active.offsetWidth)/2;
-    $('.kl-sr').textContent='Look '+(index+1)+' of '+looks.length+', '+look.name+', '+look.era;
+    $('.kl-sr').textContent='Look '+(index+1)+' of '+looks.length+', '+look.name+', '+look.era+(locked?', Coming soon':'');
+    if (locked) return;
     sprite.decode().catch(()=>{}).then(()=>{
       if (token !== renderToken) {
         outgoing?.remove();
@@ -173,7 +187,13 @@
           {transform:'translateX(0)', opacity:1}
         ], timing);
       }
-      for (const off of [-1,1]) {const img=new Image(); img.src=url(looks[wrap(index+off,looks.length)].sprite);}
+      for (const off of [-1,1]) {
+        const neighbour = looks[wrap(index+off,looks.length)];
+        if (!neighbour.locked) {
+          const image = new Image();
+          image.src = url(neighbour.sprite);
+        }
+      }
     });
   }
 
@@ -186,9 +206,20 @@
         if (!Array.isArray(data) || !data.length) throw new Error('wardrobe');
         looks=data.sort((a,b)=>a.order-b.order);
         for (const [i,look] of looks.entries()) {
-          const b=button('Show '+look.name,'',()=>go(i,Math.sign(i-index)));
-          const image=new Image();image.alt='';image.loading='lazy';image.src=url(look.thumbnail);
-          b.title=look.name; b.append(image); $('.kl-rack').append(b);
+          const label = look.name+(look.locked?' — Coming soon':'');
+          const b=button('Show '+label,'',()=>go(i,Math.sign(i-index)));
+          b.title=label;
+          if (look.locked) {
+            const lock = document.createElement('span');
+            lock.className = 'kl-lock-icon';
+            lock.setAttribute('aria-hidden', 'true');
+            b.classList.add('kl-locked-tab');
+            b.append(lock);
+          } else {
+            const image=new Image();image.alt='';image.loading='lazy';image.src=url(look.thumbnail);
+            b.append(image);
+          }
+          $('.kl-rack').append(b);
         }
       }).finally(()=>{pending=null;});
       try { await pending; } catch {

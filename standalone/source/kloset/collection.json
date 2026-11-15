@@ -256,24 +256,6 @@
     "order": 13
   },
   {
-    "id": "it-boy-merch",
-    "name": "IT BOY Merch K",
-    "sprite": "it-boy-merch-k.webp",
-    "thumbnail": "it-boy-merch-k-thumb.webp",
-    "era": "Merch",
-    "description": "The black IT BOY tee pairs pink lettering with dark denim and a red belt.",
-    "photos": [
-      {
-        "image": "memory-merch-tee.jpg",
-        "label": "The IT BOY tee, front and back"
-      }
-    ],
-    "videos": [],
-    "links": [],
-    "fact": null,
-    "order": 14
-  },
-  {
     "id": "step-by-step-dad-cover-art",
     "name": "Australia's Next Top Bottom K",
     "sprite": "step-by-step-dad-cover-art-k.webp",
@@ -293,7 +275,7 @@
     "videos": [],
     "links": [],
     "fact": null,
-    "order": 15
+    "order": 14
   },
   {
     "id": "step-by-step-dad-music-video",
@@ -312,7 +294,26 @@
     ],
     "links": [],
     "fact": null,
-    "order": 16
+    "order": 15
+  },
+  {
+    "id": "it-boy-merch",
+    "name": "IT BOY Merch K",
+    "sprite": "it-boy-merch-k.webp",
+    "thumbnail": "it-boy-merch-k-thumb.webp",
+    "era": "Merch",
+    "description": "The black IT BOY tee pairs pink lettering with dark denim and a red belt.",
+    "photos": [
+      {
+        "image": "memory-merch-tee.jpg",
+        "label": "The IT BOY tee, front and back"
+      }
+    ],
+    "videos": [],
+    "links": [],
+    "fact": null,
+    "order": 16,
+    "locked": true
   },
   {
     "id": "bro-code-cover-art",
@@ -334,7 +335,8 @@
     "videos": [],
     "links": [],
     "fact": null,
-    "order": 17
+    "order": 17,
+    "locked": true
   },
   {
     "id": "bro-code-music-video",
@@ -347,6 +349,7 @@
     "videos": [],
     "links": [],
     "fact": null,
-    "order": 18
+    "order": 18,
+    "locked": true
   }
 ]
