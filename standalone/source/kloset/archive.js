@@ -18,44 +18,6 @@
     return b;
   };
 
-  // Activate a touch tap on release. Keep swipes, multi-touch, mouse and
-  // keyboard activation separate, and discard only the duplicate native click.
-  function bindTouchButtons(container) {
-    const pointers = new Set();
-    const targetOf = node => node?.closest?.('button');
-    let press = null, lastTap = null;
-    const reset = () => {pointers.clear();press=null;lastTap=null;};
-    container.addEventListener('pointerdown', event => {
-      if (event.pointerType === 'mouse') {lastTap=null;return;}
-      pointers.add(event.pointerId);
-      hideRackLabel();
-      const target=targetOf(event.target);
-      press=pointers.size===1 && event.isPrimary!==false && target && !target.disabled
-        ? {id:event.pointerId,target,x:event.clientX,y:event.clientY} : null;
-    }, {capture:true,passive:true});
-    container.addEventListener('pointermove', event => {
-      if (press?.id===event.pointerId && Math.hypot(event.clientX-press.x,event.clientY-press.y)>14) press=null;
-    }, {capture:true,passive:true});
-    container.addEventListener('pointercancel', event => {
-      pointers.delete(event.pointerId);press=null;
-    }, {capture:true,passive:true});
-    container.addEventListener('pointerup', event => {
-      const tap=press;press=null;pointers.delete(event.pointerId);
-      if (!tap || tap.id!==event.pointerId || pointers.size || tap.target.disabled || !tap.target.isConnected ||
-          targetOf(event.target)!==tap.target || Math.hypot(event.clientX-tap.x,event.clientY-tap.y)>14) return;
-      event.preventDefault();
-      lastTap={target:tap.target,time:performance.now()};
-      tap.target.click();
-    }, {capture:true,passive:false});
-    container.addEventListener('click', event => {
-      if (!event.isTrusted || event.detail===0 || !lastTap ||
-          targetOf(event.target)!==lastTap.target || performance.now()-lastTap.time>800) return;
-      event.preventDefault();event.stopImmediatePropagation();lastTap=null;
-    }, true);
-    container.addEventListener('close',reset);
-    window.addEventListener('blur',reset);
-  }
-
   function centerRack(animate = false, steps = 0) {
     const rack = $('.kl-rack'), track = $('.kl-rack-track');
     if (!looks?.length || !rack.clientWidth) return;
@@ -67,7 +29,7 @@
     const left = rack.scrollLeft + active.getBoundingClientRect().left -
       rack.getBoundingClientRect().left - (rack.clientWidth-active.offsetWidth)/2;
     rack.scrollTo({left, behavior:'auto'});
-    if (animate && !matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse)').matches) {
+    if (animate && !matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse), (max-width: 650px)').matches) {
       const limit = looks.length*step/2;
       const distance = Math.max(-limit, Math.min(limit, drift+steps*step));
       track.animate([
@@ -100,7 +62,7 @@
 
   function create() {
     const css = document.createElement('link');
-    css.rel = 'stylesheet'; css.href = root + 'archive.css?v=20261116-touch2';
+    css.rel = 'stylesheet'; css.href = root + 'archive.css?v=20261116-native3';
     document.head.append(css);
     dialog = document.createElement('dialog');
     dialog.id = 'kl-archive';
@@ -113,12 +75,16 @@
           <button class="kl-close" aria-label="Close The Kloset">×</button>
         </header>
         <div class="kl-status" role="status">
-          <span class="kl-loading-star" aria-hidden="true">✦</span>
-          <h2>Opening The Kloset</h2>
-          <p class="kl-loading-copy">Getting the outfits and photos ready…</p>
-          <progress class="kl-loading-progress" value="0" max="1" aria-label="Kloset images loaded"></progress>
-          <span class="kl-loading-count" aria-hidden="true"></span>
-          <div class="kl-loading-actions"></div>
+          <div class="kl-loading-cabinet">
+            <div class="kl-loading-doors" aria-hidden="true"><i></i><i></i></div>
+            <div class="kl-loading-plaque">
+              <svg class="kl-loading-hanger" viewBox="0 0 100 66" aria-hidden="true"><path d="M44 17c-1-13 17-14 17-3 0 7-11 7-11 16L12 49c-5 3-3 9 3 9h70c6 0 8-6 3-9L50 30"/></svg>
+              <h2>Opening The Kloset</h2>
+              <p class="kl-loading-copy">Your next look is waiting.</p>
+              <div class="kl-loading-meter"><progress class="kl-loading-progress" value="0" max="1" aria-label="Kloset images loaded"></progress><span class="kl-loading-count" aria-hidden="true">0%</span></div>
+              <div class="kl-loading-actions"></div>
+            </div>
+          </div>
         </div>
         <div class="kl-body" hidden>
           <div class="kl-spread">
@@ -154,13 +120,13 @@
         <span class="kl-sr" aria-live="polite" aria-atomic="true"></span>
       </div>`;
     document.body.append(dialog);
-    bindTouchButtons(dialog);
     new ResizeObserver(() => centerRack()).observe($('.kl-rack'), {box:'border-box'});
     new ResizeObserver(fitTitle).observe($('.kl-nameplate'));
     $('.kl-close').onclick = () => dialog.close();
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
     dialog.addEventListener('close', () => {
       hideRackLabel();
+      document.dispatchEvent(new Event('kland-modal-change'));
       ++renderToken;
       dialog.querySelectorAll('.kl-sprite-outgoing').forEach(image => image.remove());
       $('.kl-sprite').getAnimations().forEach(animation => animation.cancel());
@@ -178,7 +144,7 @@
       let start = null, swiped = false;
       surface.addEventListener('pointerdown', e => {
         // A swipe may have no compatibility click; don't suppress the next tap.
-        swiped = false;
+        swiped = false; start = null;
         if (!e.isPrimary || e.button !== 0 || (surface === stage && e.target.closest('button'))) return;
         start = {x:e.clientX, y:e.clientY, id:e.pointerId};
         if (surface === stage) surface.setPointerCapture(e.pointerId);
@@ -259,7 +225,7 @@
     dialog.querySelectorAll('.kl-sprite-outgoing').forEach(image => image.remove());
     let outgoing = null;
     if (!locked && direction && sprite.complete && sprite.naturalWidth &&
-        !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        !matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse), (max-width: 650px)').matches) {
       outgoing = sprite.cloneNode();
       outgoing.className = 'kl-sprite-outgoing';
       outgoing.hidden = false;
@@ -281,7 +247,7 @@
     centerRack(direction !== 0, steps);
     $('.kl-sr').textContent='Look '+(index+1)+' of '+looks.length+', '+look.name+', '+look.era+(locked?', Coming soon':'');
     if (locked) return;
-    sprite.decode().catch(()=>{}).then(()=>{
+    const reveal = () => {
       if (token !== renderToken) {
         outgoing?.remove();
         return;
@@ -299,14 +265,9 @@
           {transform:'translateX(0)', opacity:1}
         ], timing);
       }
-      for (const off of [-1,1]) {
-        const neighbour = looks[wrap(index+off,looks.length)];
-        if (!neighbour.locked) {
-          const image = new Image();
-          image.src = url(neighbour.sprite);
-        }
-      }
-    });
+    };
+    if (preparedImages.has(url(look.sprite))) reveal();
+    else sprite.decode().catch(()=>{}).then(reveal);
   }
 
   async function getLooks() {
@@ -351,7 +312,7 @@
       const progress=$('.kl-loading-progress');progress.max=sources.length||1;
       const update=()=>{
         progress.value=completed;
-        $('.kl-loading-count').textContent=completed+' / '+sources.length;
+        $('.kl-loading-count').textContent=Math.round(completed/(sources.length||1)*100)+'%';
       };
       update();
       async function worker() {
@@ -389,7 +350,6 @@
         if (copy !== 1) {
           b.setAttribute('aria-hidden','true');
           b.tabIndex=-1;
-          b.addEventListener('pointerdown', e => e.preventDefault());
         }
         if (look.locked) {
           const lock = document.createElement('span');
@@ -413,14 +373,14 @@
       $('.kl-body').hidden=true;$('.kl-status').hidden=false;
       $('.kl-count').textContent='LOADING';
       $('.kl-status h2').textContent='Opening The Kloset';
-      $('.kl-loading-copy').textContent='Getting the outfits and photos ready…';
-      $('.kl-loading-progress').hidden=false;
+      $('.kl-loading-copy').textContent='Your next look is waiting.';
+      $('.kl-loading-meter').hidden=false;$('.kl-loading-progress').hidden=false;
       $('.kl-loading-actions').replaceChildren();
       try {await prepareImages();} catch {
         dialog.setAttribute('aria-busy','false');
         $('.kl-status h2').textContent='The Kloset couldn’t finish loading';
         $('.kl-loading-copy').textContent='Some outfits or photos couldn’t load. Please try again.';
-        $('.kl-loading-progress').hidden=true;$('.kl-loading-count').textContent='';
+        $('.kl-loading-meter').hidden=true;$('.kl-loading-progress').hidden=true;$('.kl-loading-count').textContent='';
         $('.kl-loading-actions').replaceChildren(button('Retry loading The Kloset','Try again',load));
         return;
       }
@@ -453,7 +413,9 @@
       const p=DATA.locations.find(p=>p.id===place), pos=window.mapPos(p);
       window.focusXY(pos.x,pos.y,Math.max(state.min*1.55,innerWidth<=820?.9:.82),true);
     }
-    dialog.showModal();$('.kl-close').focus({preventScroll:true});load();
+    dialog.showModal();
+    document.dispatchEvent(new Event('kland-modal-change'));
+    $('.kl-close').focus({preventScroll:true});load();
   }
   window.showPlace=function(id,focus,...rest) {
     if (id===place) return openArchive(focus);
