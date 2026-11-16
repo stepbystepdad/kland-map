@@ -118,7 +118,8 @@ def script_file(match):
   const label=document.createElement('label'),auto=document.createElement('input');auto.type='checkbox';auto.checked=true;auto.setAttribute('aria-label','Automatically refresh Town Hall');label.append(auto,document.createTextNode(' Auto-refresh'));
   const refresh=document.createElement('button');refresh.type='button';refresh.className='forum-refresh';refresh.textContent='Refresh messages ↻';toolbar.append(label,refresh);
   const status=document.createElement('p');status.className='forum-status';status.setAttribute('role','status');
-  const frame=document.createElement('iframe');frame.title='Town Hall public discussion';frame.className='town-hall-frame';body.append(toolbar,status,frame);window.KLandSetFormSource(frame,'https://www.kevinsilvester.com/town-hall/town-hall?kland-embed=1');
+  const guidance=document.createElement('p');guidance.className='forum-status';guidance.textContent='Be kind. New messages appear after approval.';
+  const frame=document.createElement('iframe');frame.title='Town Hall public discussion';frame.className='town-hall-frame';body.append(toolbar,guidance,status,frame);window.KLandSetFormSource(frame,'https://www.kevinsilvester.com/town-hall/town-hall?kland-embed=1');
   function refreshForm(manual=false){if(frame.dataset.formBusy==='true'){if(manual)status.textContent='Post or clear your draft before refreshing.';return;}window.KLandRefreshForm(frame);}
   refresh.onclick=()=>refreshForm(true);
   const timer=setInterval(()=>{if(!frame.isConnected){clearInterval(timer);return;}if(auto.checked&&!document.hidden&&document.getElementById('panel-story').classList.contains('open')&&!frame.closest('.kland-popup-view[hidden]'))refreshForm();},45000);

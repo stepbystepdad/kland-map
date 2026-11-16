@@ -3,6 +3,7 @@ import {readFile,readdir} from 'node:fs/promises';
 import vm from 'node:vm';
 import worker from '../source/worker.js';
 import './mobile-controls.test.mjs';
+import './form-bridge.test.mjs';
 const root=new URL('../dist/',import.meta.url);
 const html=await readFile(new URL('index.html',root),'utf8');
 let scripts=0;

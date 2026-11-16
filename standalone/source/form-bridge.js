@@ -24,7 +24,13 @@
       const card=frame.closest('.kland-popup-view'),portal=frame.closest('.kland-form-portal');
       const active=!!p&&panel.classList.contains('open')&&document.getElementById('kland-loading')?.hidden===true&&style.visibility!=='hidden'&&(!card||!card.hidden)&&(!portal||portal.getAttribute('aria-hidden')!=='true')&&r.width>0&&r.height>0;
       const top=p?Math.max(0,p.top+56-r.top):0,bottom=p?Math.max(0,r.bottom-p.bottom+2):0,left=p?Math.max(0,p.left+2-r.left):0,right=p?Math.max(0,r.right-p.right+2):0;
-      layout.push({id,active,path:frame.dataset.formPath,title:frame.title,x:r.x,y:r.y,width:r.width,height:r.height,clip:[top,right,bottom,left]});
+      if(frame.dataset.formPath==='/town-hall/town-hall'){
+        // The shell owns the visible discussion iframe. Cropping its bottom
+        // hides the end of its scroll viewport even at maximum scroll. Size
+        // that viewport to the visible panel instead, including after resize.
+        const width=Math.max(0,r.width-left-right),height=Math.max(0,r.height-top-bottom);
+        layout.push({id,active:active&&width>0&&height>0,path:frame.dataset.formPath,title:frame.title,x:r.x+left,y:r.y+top,width,height,clip:[0,0,0,0]});
+      }else layout.push({id,active,path:frame.dataset.formPath,title:frame.title,x:r.x,y:r.y,width:r.width,height:r.height,clip:[top,right,bottom,left]});
     }
     const data=JSON.stringify(layout);if(data!==last){last=data;send({type:'kland-form-layout',layout});}
   }
