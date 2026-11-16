@@ -173,7 +173,8 @@
     "videos": [
       {
         "label": "FOOL'S GOLD Lyric video",
-        "url": "https://youtu.be/5ntn5wqVlAk?si=PcUXYXE_VQrgWPz8"
+        "url": "https://youtu.be/5ntn5wqVlAk?si=PcUXYXE_VQrgWPz8",
+        "image": "https://i.ytimg.com/vi/5ntn5wqVlAk/maxresdefault.jpg"
       }
     ],
     "links": [],
@@ -316,22 +317,23 @@
   },
   {
     "id": "it-boy-merch",
-    "name": "IT BOY Merch K",
+    "name": "Off-day K",
     "sprite": "it-boy-merch-k.webp?v=0bcab2b4f435",
     "thumbnail": "it-boy-merch-k-thumb.webp?v=7f7ffa286155",
     "era": "Merch",
-    "description": "The black IT BOY tee pairs pink lettering with dark denim and a red belt.",
+    "description": "Shop the IT BOY tee and more on the official merch store",
     "photos": [
       {
         "image": "it-boy-store-mockup.webp?v=e335c11deb88",
-        "label": "The IT BOY tee, front and back"
+        "label": "Shop the IT BOY tee and more on the official merch store",
+        "alt": "Front and back of the black IT BOY Shirt with pink artwork."
       }
     ],
     "videos": [],
     "links": [
       {
-        "label": "Preorder the IT BOY Shirt",
-        "url": "https://www.kevinsilvester.com/store/p/it-boy-shirt"
+        "label": "Merch Store",
+        "url": "https://kevinsilvester.com/store"
       }
     ],
     "fact": null,
